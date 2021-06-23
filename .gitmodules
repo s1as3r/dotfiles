@@ -1,0 +1,13 @@
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "awesome/module/bling"]
+	path = awesome/module/bling
+	url = https://github.com/BlingCorp/bling
+[submodule "awesome/module/layout-machi"]
+	path = awesome/module/layout-machi
+	url = https://github.com/xinhaoyuan/layout-machi
+[submodule "ohmyzsh"]
+	path = ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
