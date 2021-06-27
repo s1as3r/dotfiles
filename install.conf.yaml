@@ -22,6 +22,6 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - 
-    command: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}:-~/.oh-my-zsh/cstom}/plugins/zsh-autosuggestions
+    command: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     description: Cloning zsh-autosuggestions
   - [sed -i "s/➜/λ/g" ~/.oh-my-zsh/themes/robbyrussell.zsh-theme, Changing Prompt]
