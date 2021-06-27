@@ -4,8 +4,14 @@ mcd() {
 
 # Update dotfiles
 dfu() {
+    if [ `uname -o` = Android ];
+    then 
+        install_file=./termux_install
+    else 
+        install_file=./install
+    fi
     (
-        cd ~/.dotfiles && git pull --ff-only && ./install -q
+        cd ~/.dotfiles && git pull --ff-only && $install_file -q
     )
 };
 
