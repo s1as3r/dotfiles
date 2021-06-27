@@ -1,7 +1,7 @@
 export ZSH="/data/data/com.termux/files/home/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
-OMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 plugins=(
     zsh-autosuggestions
