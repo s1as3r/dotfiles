@@ -1,0 +1,2 @@
+#!/data/data/com.termux/files/usr/bin/env bash
+./install -c termux-install.conf.yaml $@

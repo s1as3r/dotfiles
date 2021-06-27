@@ -1,0 +1,25 @@
+export ZSH="/data/data/com.termux/files/home/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+
+OMPLETION_WAITING_DOTS="true"
+
+plugins=(
+    zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+export EDITOR='nvim'
+
+# Aliases
+alias py=python3
+alias python=python3
+alias ipy=ipython
+alias duh='du -ha --max-depth=1'
+alias gitsc='git clone --depth=1'
+alias chx='chmod u+x'
+alias c=clear
+alias v=nvim
+
+# Functions
+mcd(){ mkdir "$1" && cd "$1"; };
