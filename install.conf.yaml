@@ -8,7 +8,6 @@
     ~/.zshrc: zshrc
     ~/.Xresources: Xresources
     ~/.oh-my-zsh: ohmyzsh
-    ~/.aliases: aliases
     ~/.ghci: ghci
     ~/.config/awesome: awesome
     ~/.config/kitty: kitty
@@ -25,4 +24,4 @@
   - 
     command: git clone "https://github.com/zsh-autosuggestions" "${ZSH_CUSTOM}:-~/.oh-my-zsh/cstom}/plugins/zsh-autosuggestions"
     description: Cloning zsh-autosuggestions
-  - [sed -i "s/➜/λ/g" ~/.oh-my-zsh/themes/robbyrussell.zsh-theme]
+  - [sed -i "s/➜/λ/g" ~/.oh-my-zsh/themes/robbyrussell.zsh-theme, Changing Prompt]

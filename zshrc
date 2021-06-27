@@ -12,9 +12,17 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Aliases
+alias py=python3
+alias python=python3
+alias ipy=ipython
+alias duh='du -ha --max-depth=1'
+alias gitsc='git clone --depth=1'
+alias chx='chmod u+x'
+alias c=clear
+alias v=nvim
 
+alias icat='kitty +kitten icat'
 
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
+# Functions
+mcd(){ mkdir "$1" && cd "$1"; };
