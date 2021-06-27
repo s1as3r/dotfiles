@@ -12,8 +12,8 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-source '~/.utility/aliases.sh'
-source '~/.utility/functions.sh'
+source ~/.utility/aliases.sh
+source ~/.utility/functions.sh
 
 # Aliases
 alias icat='kitty +kitten icat'
