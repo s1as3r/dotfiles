@@ -12,17 +12,8 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
+source '~/.utility/aliases.sh'
+source '~/.utility/functions.sh'
+
 # Aliases
-alias py=python3
-alias python=python3
-alias ipy=ipython
-alias duh='du -ha --max-depth=1'
-alias gitsc='git clone --depth=1'
-alias chx='chmod u+x'
-alias c=clear
-alias v=nvim
-
 alias icat='kitty +kitten icat'
-
-# Functions
-mcd(){ mkdir "$1" && cd "$1"; };

@@ -9,6 +9,7 @@
     ~/.Xresources: Xresources
     ~/.oh-my-zsh: ohmyzsh
     ~/.ghci: ghci
+    ~/.utility: utility
     ~/.config/awesome: awesome
     ~/.config/kitty: kitty
     ~/.config/nvim: nvim

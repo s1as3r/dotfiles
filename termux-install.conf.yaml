@@ -10,6 +10,7 @@
     ~/.oh-my-zsh: ohmyzsh
     ~/.config/nvim: nvim
     ~/.termux: termux/termux
+    ~/.utility: utility
     ~/bin: termux/bin 
     ~/internal: /storage/emulated/0/
 
