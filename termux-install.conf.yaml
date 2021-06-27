@@ -11,6 +11,7 @@
     ~/.config/nvim: nvim
     ~/.termux: termux/termux
     ~/bin: termux/bin 
+    ~/internal: /storage/emulated/0/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

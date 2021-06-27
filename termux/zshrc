@@ -20,6 +20,7 @@ alias gitsc='git clone --depth=1'
 alias chx='chmod u+x'
 alias c=clear
 alias v=nvim
+alias cdd='cd /storage/emulated/0/'
 
 # Functions
 mcd(){ mkdir "$1" && cd "$1"; };
