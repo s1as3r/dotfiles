@@ -1,7 +1,9 @@
 export ZSH="/data/data/com.termux/files/home/.oh-my-zsh"
+
 ZSH_THEME="robbyrussell"
 
 COMPLETION_WAITING_DOTS="true"
+set -o vi
 
 plugins=(
     zsh-autosuggestions

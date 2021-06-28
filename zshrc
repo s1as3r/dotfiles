@@ -3,6 +3,7 @@ export PATH=$PATH:"/home/slas3r/.local/bin":"/home/slas3r/.bin"
 ZSH_THEME="robbyrussell"
 
 COMPLETION_WAITING_DOTS="true"
+set -o vi
 
 plugins=(
     zsh-autosuggestions
