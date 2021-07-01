@@ -20,3 +20,4 @@ alias icat='kitty +kitten icat'
 
 # Enavle vi mode
 set -o vi
+export KEYTIMEOUT=1

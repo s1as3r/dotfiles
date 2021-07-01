@@ -20,3 +20,4 @@ alias cdd='cd /storage/emulated/0/'
 
 # Enable vi mode
 set -o vi
+export KEYTIMEOUT=1
