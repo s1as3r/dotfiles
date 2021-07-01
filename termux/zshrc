@@ -3,7 +3,6 @@ export ZSH="/data/data/com.termux/files/home/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 COMPLETION_WAITING_DOTS="true"
-set -o vi
 
 plugins=(
     zsh-autosuggestions
@@ -19,3 +18,5 @@ source ~/.utility/functions.sh
 # Aliases
 alias cdd='cd /storage/emulated/0/'
 
+# Enable vi mode
+set -o vi

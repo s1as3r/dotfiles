@@ -3,7 +3,6 @@ export PATH=$PATH:"/home/slas3r/.local/bin":"/home/slas3r/.bin"
 ZSH_THEME="robbyrussell"
 
 COMPLETION_WAITING_DOTS="true"
-set -o vi
 
 plugins=(
     zsh-autosuggestions
@@ -18,3 +17,6 @@ source ~/.utility/functions.sh
 
 # Aliases
 alias icat='kitty +kitten icat'
+
+# Enavle vi mode
+set -o vi
