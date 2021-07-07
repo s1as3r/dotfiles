@@ -22,7 +22,13 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+
   - 
-    command: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    command:
+      omz=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
+      if [[ ! -d $omz ]]; then 
+        git clone https://github.com/zsh-users/zsh-autosuggestions $omz;
+      fi;
     description: Cloning zsh-autosuggestions
+
   - [sed -i "s/➜/λ/g" ~/.oh-my-zsh/themes/robbyrussell.zsh-theme, Changing Prompt]
