@@ -194,6 +194,9 @@ awful.keyboard.append_global_keybindings(
         awful.key({modkey}, "v",
                   function() awesome.emit_signal("scratch::discord") end,
                   {description = "open discord", group = "scratchpad"}),
+        awful.key({modkey, "Shift"}, "n",
+                  function() awesome.emit_signal("scratch::notion") end,
+                  {description = "open notion", group = "scratchpad"}),
         awful.key({modkey}, "w", function()
             awful.spawn.with_shell(browser)
         end, {description = "open chrome", group = "launcher"}),

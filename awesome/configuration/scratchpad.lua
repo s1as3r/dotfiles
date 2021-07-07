@@ -39,6 +39,22 @@ local anim_y = awestore.tweened(1090, {
     easing = awestore.easing.cubic_in_out
 })
 
+local notion_scratch = bling.module.scratchpad:new{
+    command = "notion-app",
+    rule = {class = "Notion"},
+    sticky = false,
+    autoclose = false,
+    floating = true,
+    geometry = {x = dpi(460), y = dpi(90), height = dpi(800), width = dpi(1000)},
+    reapply = true,
+    -- dont_focus_before_close = false,
+    awestore = {y = anim_y}
+}
+
+awesome.connect_signal("scratch::notion",
+                       function() notion_scratch:toggle() end)
+
+
 local discord_scratch = bling.module.scratchpad:new{
     command = "google-chrome-stable --new-window https://discord.com/app --new-instance --class=Discord",
     rule = {class = "Discord"},
