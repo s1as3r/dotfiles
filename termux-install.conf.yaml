@@ -13,7 +13,7 @@
     ~/.utility: utility
     ~/bin: termux/bin 
     ~/internal: /storage/emulated/0/
-    ~/bin/termux-file-opener: $PREFIX/bin/nvim
+    ~/bin/termux-file-editor: $PREFIX/bin/nvim
     ~/.termux/shell: $PREFIX/bin/zsh
 
 - shell:
