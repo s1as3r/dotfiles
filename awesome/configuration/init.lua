@@ -12,12 +12,11 @@ require("configuration.autostart")
 -- Default Applications
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nvim"
-editor_cmd = terminal .. " start " .. editor
+editor_cmd = terminal .. " " .. editor
 browser = "google-chrome-stable"
 filemanager = "thunar"
 discord = "discord"
 launcher = "rofi -show drun"
-music = terminal .. ' start --class music ncmpcpp'
 
 -- Global Vars
 screen_width = awful.screen.focused().geometry.width

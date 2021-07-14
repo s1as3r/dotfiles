@@ -17,23 +17,6 @@ local anim_x = awestore.tweened(-1010, {
     easing = awestore.easing.cubic_in_out
 })
 
-local music_scratch = bling.module.scratchpad:new{
-    command = music,
-    rule = {instance = "music"},
-    sticky = false,
-    autoclose = false,
-    floating = true,
-    geometry = {x = dpi(10), y = dpi(566), height = dpi(500), width = dpi(1000)},
-    reapply = true,
-    awestore = {x = anim_x}
-
-}
-
-awesome.connect_signal("scratch::music", function()
-    check_if_alive("mopidy")
-    music_scratch:toggle()
-end)
-
 local anim_y = awestore.tweened(1090, {
     duration = 300,
     easing = awestore.easing.cubic_in_out

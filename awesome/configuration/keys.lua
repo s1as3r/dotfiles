@@ -185,10 +185,6 @@ awful.keyboard.append_global_keybindings(
 
                 end)
         end, {description = "open a terminal", group = "launcher"}),
-        awful.key({modkey}, "s",
-                  function() awesome.emit_signal("scratch::music") end,
-                  {description = "open music", group = "scratchpad"}),
-
         awful.key({modkey}, "f", function() awful.spawn(filemanager) end,
                   {description = "open file browser", group = "launcher"}),
         awful.key({modkey}, "v",
