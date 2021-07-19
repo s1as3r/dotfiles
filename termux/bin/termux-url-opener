@@ -1,32 +1,38 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 SONGS="$HOME/storage/shared/Music" 
-SPOTDL="/data/data/com.termux/files/usr/bin/spotdl"
-PYTUBE="/data/data/com.termux/files/usr/bin/pytube"
-ARIA="/data/data/com.termux/files/usr/bin/aria2c"
-DOWNLOADS="$HOME/storage/shared/Download"
+SPOTDL="$PREFIX/bin/spotdl"
+PYTUBE="$PREFIX/bin/pytube"
+PYTHON="$PREFIX/bin/python"
+ARIA="$PREFIX/bin/aria2c"
+DOWNLOADS="$HOME/storage/downloads"
+
+exit_dialogue() {
+    read -n 1 -s -p "Press Any Key To Exit."
+}
+
 
 if [[ $1 == *"open.spotify.com"* ]]; then
-    if [[ ! -d $SONGS ]]; then
-        mkdir $SONGS
-    fi
-    
     cd $SONGS
     $SPOTDL "$1"
 
-    read -n 1 -s -p "Press Any Key To Exit."
+    exit_dialogue
 
 elif [[ $1 == *"youtu"* ]]; then
     cd $DOWNLOADS
     $PYTUBE "$1"
 
-    read -n 1 -s -p "Press Any Key To Exit."
+    exit_dialogue
+
+elif [[ $1 == *"reddit"* ]]; then
+    $PYTHON -m bdfr download -v --folder-scheme '' -l "$1" $DOWNLOADS
+
+    exit_dialogue
 
 else
-    cd $DOWNLOADS
-    $ARIA "$1"
+    $ARIA -d $DOWNLOADS "$1"
 
-    read -n 1 -s -p "Press Any Key To Exit."
+    exit_dialogue
 fi
 
 
