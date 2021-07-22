@@ -1,7 +1,7 @@
 -- Bufferline
 --
-local vis = {guifg = '#eaeaea', guibg = '#1a2026', gui = ''}
-local sel = {guifg = "#eaeaea", guibg = '#29343d', gui = ''}
+local vis = {guifg = '#eaeaea', guibg = '#1a2026'}
+local sel = {guifg = "#eaeaea", guibg = '#29343d'}
 
 require'bufferline'.setup {
     options = {

@@ -6,7 +6,7 @@ local condition = require('galaxyline.condition')
 gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
 
 local colors = {
-    bg0 = '#1a2026',
+    bg0 = '#131a21',
     bg = '#29343d',
     bg1 = '#3b4b58',
     fg = '#bbc2cf',

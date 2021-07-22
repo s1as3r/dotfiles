@@ -1,62 +1,70 @@
-local nvim = require 'nvim'
+vim.api
+    .nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+vim.g.mapleader = ' '
 
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
-    nvim.set_keymap(mode, lhs, rhs, options)
-end
+-- no hl
+vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>',
+                        {noremap = true, silent = true})
 
--- Completion
+-- explorer
+vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>',
+                        {noremap = true, silent = true})
+
+-- better window movement
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
+
+-- Terminal window navigation
 vim.cmd([[
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  tnoremap <C-h> <C-\><C-N><C-w>h
+  tnoremap <C-j> <C-\><C-N><C-w>j
+  tnoremap <C-k> <C-\><C-N><C-w>k
+  tnoremap <C-l> <C-\><C-N><C-w>l
+  inoremap <C-h> <C-\><C-N><C-w>h
+  inoremap <C-j> <C-\><C-N><C-w>j
+  inoremap <C-k> <C-\><C-N><C-w>k
+  inoremap <C-l> <C-\><C-N><C-w>l
+  tnoremap <Esc> <C-\><C-n>
 ]])
 
--- Open Terminals
-map("n", "<C-b>", [[<Cmd>vnew term://zsh<CR>]], nil)
-map("n", "<C-x>", [[<Cmd>split term://zsh | resize 10<CR>]], nil)
+-- resize with arrows
+vim.cmd([[
+  nnoremap <silent> <C-Up>    :resize -2<CR>
+  nnoremap <silent> <C-Down>  :resize +2<CR>
+  nnoremap <silent> <C-Left>  :vertical resize -2<CR>
+  nnoremap <silent> <C-Right> :vertical resize +2<CR>
+]])
 
--- Split Resizing
-map("n", "<C-Left>", [[<Cmd>vertical resize +3<CR>]], nil)
-map("n", "<C-Right>", [[<Cmd>vertical resize -3<CR>]], nil)
-map("n", "<C-Up>", [[<Cmd>resize +3<CR>]], nil)
-map("n", "<C-Down>", [[<Cmd>resize -3<CR>]], nil)
+-- better indenting
+vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
 
--- Vertical Split
-map("n", "<C-V>", [[<Cmd>vsplit<CR>]], nil)
+-- Tab switch buffer
+vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>',
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>',
+                        {noremap = true, silent = true})
 
--- Glow
-map("n", "<Leader>p", [[:Glow<CR>]])
+-- Move selected line / block of text in visual mode
+vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv',
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv',
+                        {noremap = true, silent = true})
 
-local opt = {noremap = true, silent = true}
+-- Better nav for omnicomplete
+vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
+vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 
--- Telescope
-map("n", "<Leader>ff",
-    [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], opt)
-map("n", "<Leader>fg",
-    [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], opt)
-map("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin').buffers()<CR>]],
-    opt)
-map("n", "<Leader>fh",
-    [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
-
--- Nvim Tree
-map("n", "<C-n>", "<Cmd>NvimTreeToggle<CR>", opt)
-
--- Lspsaga
-nvim.exec([[
-    nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
-
-nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
-vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
-
-nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
-
-nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
-
-
-nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
-
-nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
-    ]], false)
+vim.cmd([[
+    nmap <Leader>ss <cmd>SessionSave<CR>
+    nmap <Leader>sl <cmd>SessionLoad<CR>
+    nnoremap <silent> <Leader>fh <cmd>DashboardFindHistory<CR>
+    nnoremap <silent> <Leader>ff <cmd>DashboardFindFile<CR>
+    nnoremap <silent> <Leader>tc <cmd>DashboardChangeColorscheme<CR>
+    nnoremap <silent> <Leader>fg <cmd>DashboardFindWord<CR>
+    nnoremap <silent> <Leader>fb <cmd>DashboardJumpMark<CR>
+    nnoremap <silent> <Leader>cn <cmd>DashboardNewFile<CR>
+    nnoremap <silent> <Leader>hh <cmd>Telescope help_tags<CR>
+]])
