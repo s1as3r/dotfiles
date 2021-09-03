@@ -17,7 +17,7 @@ local systray_margin = (beautiful.wibar_height - beautiful.systray_icon_size) /
 local icon1 = wibox.widget {
     widget = wibox.widget.imagebox,
     image = gears.surface.load_uncached(gfs.get_configuration_dir() ..
-                                            "icons/ghosts/awesome.png"),
+                                            "icons/ghosts/arch.png"),
     resize = true
 }
 
