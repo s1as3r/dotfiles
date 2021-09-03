@@ -44,6 +44,15 @@
     background-color: #29343d;
 }
 
+#element-text {
+    color: White;
+    background-color: #29343d;
+}
+
+#element-icon {
+    background-color: #29343d;
+}
+
 #element selected {
     color:     #ccaced;
     background-color: #29343d;
