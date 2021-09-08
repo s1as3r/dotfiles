@@ -32,7 +32,10 @@ autostart_apps = {
         gears.filesystem.get_configuration_dir() .. "configuration/picom.conf",
 
     -- Media controller daemon
-    "playerctld daemon"
+    "playerctld daemon",
+
+    -- Numlock
+    "numlockx"
 }
 -- LuaFormatter on
 
