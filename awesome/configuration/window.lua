@@ -5,7 +5,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 local helpers = require("helpers")
-local awestore = require("awestore")
 
 -- Bling Module
 local bling = require("module.bling")
@@ -25,17 +24,6 @@ require("module.savefloats")
 require("module.better-resize")
 
 client.connect_signal("request::manage", function(c)
-    -- Fade in animation (fade out is in keys)
-    local fade_in = awestore.tweened(0, {
-        duration = beautiful.fade_duration,
-        easing = awestore.easing.linear
-    })
-    local unsub = fade_in:subscribe(function(o)
-        if c and c.valid then c.opacity = o / 100 end
-    end)
-    fade_in:set(100)
-    fade_in.ended:subscribe(function() unsub() end)
-
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end

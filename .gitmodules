@@ -11,3 +11,6 @@
 [submodule "ohmyzsh"]
 	path = ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "awesome/module/rubato"]
+	path = awesome/module/rubato
+	url = https://github.com/andOrlando/rubato

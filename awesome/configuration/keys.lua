@@ -8,7 +8,6 @@ local helpers = require("helpers")
 -- Custom modules
 local machi = require("module.layout-machi")
 local bling = require("module.bling")
-local awestore = require("awestore")
 
 -- Mouse Bindings
 awful.mouse.append_global_mousebindings({
