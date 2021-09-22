@@ -57,3 +57,13 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# url encode text
+enurl () {
+	python3 -c "print(__import__('urllib.parse').parse.quote('$1'))"
+}
+
+# decode url encoded text
+deurl () {
+	python3 -c "print(__import__('urllib.parse').parse.unquote('$1'))"
+}

@@ -15,9 +15,13 @@ export EDITOR='nvim'
 source ~/.utility/aliases.sh
 source ~/.utility/functions.sh
 
+# Path
+pathadd ~/go/bin 
+
 # Aliases
 alias cdd='cd /storage/emulated/0/'
 
 # Enable vi mode
 set -o vi
 export KEYTIMEOUT=1
+
