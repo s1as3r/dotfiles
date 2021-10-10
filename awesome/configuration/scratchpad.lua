@@ -25,7 +25,7 @@ local anim_y = {
 
 
 local notion_scratch = bling.module.scratchpad:new{
-    command = "notion-app",
+    command = "google-chrome-stable --new-window https://notion.so/ --new-instance --class=Notion",
     rule = {class = "Notion"},
     sticky = false,
     autoclose = false,
