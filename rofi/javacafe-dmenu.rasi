@@ -54,7 +54,6 @@
 }
 
 #element selected {
-    color:     #ccaced;
-    background-color: #29343d;
+    background-color: #a3b8ef;
 }
 
