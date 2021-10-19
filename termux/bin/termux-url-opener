@@ -8,6 +8,14 @@ ARIA="$PREFIX/bin/aria2c"
 DOWNLOADS="$HOME/storage/downloads"
 
 exit_dialogue() {
+    if [[ $2 -eq 0 ]]; then
+        content="Download Complete";
+        icon=check_circle
+    else
+        content="Download Failed";
+        icon=cancel
+    fi
+    termux-notification --title "$1" --content "$content; Check termux for logs" --icon $icon
     read -n 1 -s -p "Press Any Key To Exit."
 }
 
@@ -16,23 +24,23 @@ if [[ $1 == *"open.spotify.com"* ]]; then
     cd $SONGS
     $SPOTDL "$1"
 
-    exit_dialogue
+    exit_dialogue "spotDL" "$?"
 
 elif [[ $1 == *"youtu"* ]]; then
     cd $DOWNLOADS
     $PYTUBE "$1"
 
-    exit_dialogue
+    exit_dialogue "pytube" "$?"
 
 elif [[ $1 == *"reddit"* ]]; then
     $PYTHON -m bdfr download -v --folder-scheme '' -l "$1" $DOWNLOADS
 
-    exit_dialogue
+    exit_dialogue "bdfr" "$?"
 
 else
     $ARIA -d $DOWNLOADS "$1"
 
-    exit_dialogue
+    exit_dialogue "aria2" "$?"
 fi
 
 
