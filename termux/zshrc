@@ -15,11 +15,12 @@ export EDITOR='nvim'
 source ~/.utility/aliases.sh
 source ~/.utility/functions.sh
 
+cdd() { cd "/storage/emulated/0/$1" }
+
 # Path
 pathadd ~/go/bin 
 
 # Aliases
-alias cdd='cd /storage/emulated/0/'
 
 # Enable vi mode
 set -o vi
