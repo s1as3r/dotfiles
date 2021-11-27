@@ -22,7 +22,15 @@ exit_dialogue() {
 
 if [[ $1 == *"open.spotify.com"* ]]; then
     cd $SONGS
-    $SPOTDL "$1"
+    
+    # echo "Choose a Lyrics Provider"
+    # select lyrics_p in "musixmatch" "genius";
+    # do
+    #    $SPOTDL "$1" --lyrics-provider $lyrics_p
+    #    break
+    # done 
+
+    $SPOTDL "$1" --lyrics-provider $lyrics_p
 
     exit_dialogue "spotDL" "$?"
 
