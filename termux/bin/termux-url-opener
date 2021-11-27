@@ -30,7 +30,7 @@ if [[ $1 == *"open.spotify.com"* ]]; then
     #    break
     # done 
 
-    $SPOTDL "$1" --lyrics-provider $lyrics_p
+    $SPOTDL "$1"
 
     exit_dialogue "spotDL" "$?"
 
