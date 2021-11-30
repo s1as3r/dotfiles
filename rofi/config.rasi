@@ -13,6 +13,6 @@ configuration {
     padding:            50;
     font:               "CascadiaCode 11";
     hide-scrollbar:     true;
-    theme:              "javacafe-dmenu";
     display-combi:		"rofi";
 }
+@theme "javacafe-dmenu"
