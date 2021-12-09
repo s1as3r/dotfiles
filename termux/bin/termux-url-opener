@@ -6,6 +6,7 @@ PYTUBE="$PREFIX/bin/pytube"
 PYTHON="$PREFIX/bin/python"
 ARIA="$PREFIX/bin/aria2c"
 DOWNLOADS="$HOME/storage/downloads"
+DEFAULT_T="{artists} - {title}.{ext}"
 
 exit_dialogue() {
     if [[ $2 -eq 0 ]]; then
@@ -22,15 +23,24 @@ exit_dialogue() {
 
 if [[ $1 == *"open.spotify.com"* ]]; then
     cd $SONGS
+    if [[ $1 == *"album"* ]]; then
+        path_t="{artist} - {album}/{title}.{ext}"
+    elif [[ $1 == *"playlist"* ]]; then
+        path_t="{playlist}/$DEFAULT_T"
+    elif [[ $1 == *"artist"* ]]; then
+        path_t="{artist}/{title}.{ext}"
+    else
+        path_t="$DEFAULT_T"
+    fi
     
-    # echo "Choose a Lyrics Provider"
-    # select lyrics_p in "musixmatch" "genius";
-    # do
-    #    $SPOTDL "$1" --lyrics-provider $lyrics_p
-    #    break
-    # done 
+    echo "Choose a Lyrics Provider"
+    select lyrics_p in "musixmatch" "genius";
+    do
+       $SPOTDL "$1" --lyrics-provider $lyrics_p --path-template "$path_t"
+       break
+    done 
 
-    $SPOTDL "$1"
+    # $SPOTDL "$1" --path-template "$path_t"
 
     exit_dialogue "spotDL" "$?"
 
