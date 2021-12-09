@@ -2,7 +2,13 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+OS=$( uname -o )
+if [[ $OS == "Android" ]]; then
+    CONFIG="termux-install.conf.yaml"
+else
+    CONFIG="install.conf.yaml"
+fi
+
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
