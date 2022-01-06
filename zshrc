@@ -14,6 +14,7 @@ export EDITOR='nvim'
 
 source ~/.utility/aliases.sh
 source ~/.utility/functions.sh
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # Aliases
 alias icat='kitty +kitten icat'
