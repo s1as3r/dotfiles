@@ -13,7 +13,7 @@ require("configuration.autostart")
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " " .. editor
-browser = "google-chrome-stable"
+browser = "firefox"
 filemanager = "thunar"
 discord = "discord"
 launcher = "rofi -show drun"

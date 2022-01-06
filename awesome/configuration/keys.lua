@@ -194,7 +194,7 @@ awful.keyboard.append_global_keybindings(
                   {description = "open notion", group = "scratchpad"}),
         awful.key({modkey}, "w", function()
             awful.spawn.with_shell(browser)
-        end, {description = "open chrome", group = "launcher"}),
+        end, {description = "open firefox", group = "launcher"}),
 
         awful.key({modkey}, "l", function() awful.tag.incmwfact(0.05) end, {
             description = "increase master width factor",
