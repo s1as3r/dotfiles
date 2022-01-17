@@ -1,2 +1,6 @@
-:set prompt  "\x03BB "
-:set prompt-cont  "   | "
+:set prompt "\ESC[38;5;208m\STX\x03BB>\ESC[m\STX "
+:set prompt-cont "    | "
+
+:set -ferror-spans -freverse-errors -fprint-expanded-synonyms
+
+:def hg \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
