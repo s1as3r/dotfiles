@@ -1,3 +1,4 @@
+alias ls="ls --hyperlink=auto --color=auto"
 alias py="python3"
 alias python="python3"
 alias ipy="ipython"

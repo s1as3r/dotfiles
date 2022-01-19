@@ -18,6 +18,7 @@ source ~/.utility/functions.sh
 
 # Aliases
 alias icat='kitty +kitten icat'
+alias hg='kitty +kitten hyperlinked_grep'
 
 # Enavle vi mode
 set -o vi
