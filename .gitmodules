@@ -7,10 +7,10 @@
 	path = ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh
 
-[submodule "lain"]
-	path = awesome/lain
-	url = https://github.com/lcpz/lain.git
-
-[submodule "freedesktop"]
+[submodule "awesome/freedesktop"]
 	path = awesome/freedesktop
-	url = https://github.com/lcpz/awesome-freedesktop.git
+	url = https://github.com/lcpz/awesome-freedesktop
+
+[submodule "awesome/lain"]
+	path = awesome/lain
+	url = https://github.com/lcpz/lain
