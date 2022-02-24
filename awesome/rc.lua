@@ -336,7 +336,7 @@ globalkeys = mytable.join(
         {description = "focus right", group = "client"}),
 
     -- Menu
-    awful.key({ modkey,           }, "close", function () awful.util.mymainmenu:show() end,
+    awful.key({ modkey,           }, "q", function () awful.util.mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
@@ -531,7 +531,7 @@ globalkeys = mytable.join(
     -- rofi
     awful.key({ modkey }, "d", function ()
             os.execute(string.format("rofi -show %s -theme %s",
-            'run', 'javacafe-dmenu'))
+            'drun', 'javacafe-dmenu'))
         end,
         {description = "show rofi", group = "launcher"}),
 
