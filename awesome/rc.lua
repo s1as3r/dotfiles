@@ -84,20 +84,7 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
-local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex"           -- 10
-}
 
-local chosen_theme = themes[7]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "kitty"
@@ -171,7 +158,7 @@ awful.util.tasklist_buttons = mytable.join(
      awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
 )
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/.config/awesome/theme/theme.lua", os.getenv("HOME")))
 
 -- }}}
 
@@ -268,14 +255,28 @@ globalkeys = mytable.join(
     -- Destroy all notifications
     awful.key({ "Control",           }, "space", function() naughty.destroy_all_notifications() end,
               {description = "destroy all notifications", group = "hotkeys"}),
-    -- Take a screenshot
-    -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-              {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
               {description = "lock screen", group = "hotkeys"}),
+
+    -- Screenshot Stuff 
+    awful.key({}, "Print", function()
+        awful.spawn.with_shell(gears.filesystem.get_configuration_dir() ..
+                                   "scripts/shoot")
+    end, {description = "take a screenshot", group = "awesome"}),
+    awful.key({modkey}, "Print", function()
+        awful.spawn.with_shell(gears.filesystem.get_configuration_dir() ..
+                                   "scripts/shoot selnp")
+    end, {description = "take a selection with no pads", group = "awesome"}),
+    awful.key({modkey, "Shift"}, "Print", function()
+        awful.spawn.with_shell(gears.filesystem.get_configuration_dir() ..
+                                   "scripts/shoot sel")
+    end, {description = "take a selection with pads", group = "awesome"}),
+
+    -- Color Picker
+    awful.key({modkey}, "p", function() awful.spawn("farge --notify") end,
+              {description = "color picker", group = "awesome"}),
 
     -- Show help
     awful.key({ modkey,           }, "F1",      hotkeys_popup.show_help,
