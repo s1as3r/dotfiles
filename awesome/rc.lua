@@ -260,7 +260,7 @@ globalkeys = mytable.join(
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
               {description = "lock screen", group = "hotkeys"}),
 
-    -- Screenshot Stuff 
+    -- Screenshot Stuff
     awful.key({}, "Print", function()
         awful.spawn.with_shell(gears.filesystem.get_configuration_dir() ..
                                    "scripts/shoot")
@@ -440,9 +440,9 @@ globalkeys = mytable.join(
 
     -- Screen brightness
     awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 5") end,
-              {description = "+10%", group = "hotkeys"}),
+              {description = "+5%", group = "hotkeys"}),
     awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec x") end,
-              {description = "-10%", group = "hotkeys"}),
+              {description = "-5%", group = "hotkeys"}),
 
     -- Volume control
     awful.key({}, "XF86AudioRaiseVolume",
@@ -515,21 +515,7 @@ globalkeys = mytable.join(
               {description = "run browser", group = "launcher"}),
 
 
-    -- Default
-    --[[ Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
-    --]]
-    --[[ dmenu
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
-            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-        end,
-        {description = "show dmenu", group = "launcher"}),
-    --]]
-    -- alternatively use rofi, a dmenu-like application with more features
-    -- check https://github.com/DaveDavenport/rofi for more details
-    -- rofi
+    -- Rofi
     awful.key({ modkey }, "d", function ()
             os.execute(string.format("rofi -show %s -theme %s",
             'drun', 'dmenu-theme'))
