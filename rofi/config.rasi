@@ -15,4 +15,4 @@ configuration {
     hide-scrollbar:     true;
     display-combi:		"rofi";
 }
-@theme "javacafe-dmenu"
+@theme "dmenu-theme"
