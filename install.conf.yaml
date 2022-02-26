@@ -12,6 +12,7 @@
     ~/.utility: utility
     ~/.config/awesome: awesome
     ~/.config/kitty: kitty
+    ~/.config/picom.conf: picom.conf
     ~/.config/nvim: nvim
     ~/.config/rofi: rofi
     ~/.config/gtk-3.0: gtk-3.0

@@ -24,6 +24,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
                       require("awful.hotkeys_popup.keys")
 local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+local machi = require("modules.layout-machi")
+beautiful.layout_machi = machi.get_icon()
+
 -- }}}
 
 -- {{{ Error handling
@@ -68,7 +71,20 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" }) -- comma-separated entries
+local autostart_apps = {
+    -- Bluetooth
+    "blueman-applet",
+
+    -- Compositor
+    "picom --config ~/.config/picom.conf",
+
+    -- Numlock
+    "numlockx",
+
+    "unclutter -root"
+}
+
+run_once(autostart_apps) -- comma-separated entries
 
 -- This function implements the XDG autostart specification
 --[[
@@ -101,6 +117,7 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
+    machi.default_layout,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -376,7 +393,7 @@ globalkeys = mytable.join(
         {description = "toggle wibox", group = "awesome"}),
 
     -- On-the-fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end,
+    awful.key({ altkey, "Control" }, "=", function () lain.util.useless_gaps_resize(1) end,
               {description = "increment useless gaps", group = "tag"}),
     awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end,
               {description = "decrement useless gaps", group = "tag"}),
@@ -535,7 +552,14 @@ globalkeys = mytable.join(
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"})
+              {description = "lua execute prompt", group = "awesome"}),
+
+    awful.key({modkey}, ".", function() machi.default_editor.start_interactive() end,
+             { description = "edit the current layout if it is a machi layout",
+               group = "layout"}),
+    awful.key({modkey}, "/", function() machi.switcher.start(client.focus) end,
+              { description = "switch between windows for a machi layout",
+                group = "layout"})
     --]]
 )
 
