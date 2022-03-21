@@ -23,11 +23,13 @@ exit_dialogue() {
 
 if [[ $1 == *"open.spotify.com"* ]]; then
     cd $SONGS
-    if [[ $1 == *"album"* ]]; then
+    if [[ $1 == *"/album/"* ]]; then
         path_t="{artist} - {album}/{title}.{ext}"
-    elif [[ $1 == *"playlist"* ]]; then
+    elif [[ $1 == *"/track/"* ]]; then
+        path_t="$DEFAULT_T"
+    elif [[ $1 == *"/playlist/"* ]]; then
         path_t="{playlist}/$DEFAULT_T"
-    elif [[ $1 == *"artist"* ]]; then
+    elif [[ $1 == *"/artist/"* ]]; then
         path_t="{artist}/{title}.{ext}"
     else
         path_t="$DEFAULT_T"
