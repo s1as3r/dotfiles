@@ -2,7 +2,7 @@
 
 SONGS="$HOME/storage/shared/Music" 
 SPOTDL="$PREFIX/bin/spotdl"
-PYTUBE="$PREFIX/bin/pytube"
+YT_DLP="$PREFIX/bin/yt-dlp"
 PYTHON="$PREFIX/bin/python"
 ARIA="$PREFIX/bin/aria2c"
 DOWNLOADS="$HOME/storage/downloads"
@@ -33,22 +33,15 @@ if [[ $1 == *"open.spotify.com"* ]]; then
         path_t="$DEFAULT_T"
     fi
     
-    echo "Choose a Lyrics Provider"
-    select lyrics_p in "musixmatch" "genius";
-    do
-       $SPOTDL "$1" --lyrics-provider $lyrics_p --path-template "$path_t"
-       break
-    done 
-
-    # $SPOTDL "$1" --path-template "$path_t"
+    $SPOTDL "$1" --path-template "$path_t"
 
     exit_dialogue "spotDL" "$?"
 
 elif [[ $1 == *"youtu"* ]]; then
     cd $DOWNLOADS
-    $PYTUBE "$1"
+    $YT_DLP "$1"
 
-    exit_dialogue "pytube" "$?"
+    exit_dialogue "yt-dlp" "$?"
 
 elif [[ $1 == *"reddit"* ]]; then
     $PYTHON -m bdfr download -v --folder-scheme '' -l "$1" $DOWNLOADS
