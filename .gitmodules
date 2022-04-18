@@ -17,3 +17,6 @@
 [submodule "awesome/modules/layout-machi"]
 	path = awesome/modules/layout-machi
 	url = https://github.com/xinhaoyuan/layout-machi
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/NvChad/NvChad
