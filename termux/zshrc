@@ -26,3 +26,7 @@ pathadd ~/go/bin
 set -o vi
 export KEYTIMEOUT=1
 
+# Set-Up autojump
+[[ -s /data/data/com.termux/files/home/.autojump/etc/profile.d/autojump.sh ]] && source /data/data/com.termux/files/home/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
