@@ -1,3 +1,6 @@
 termux-file-editor
 packer_compiled.lua
+nvim/plugin
+nvim/custom
+nvim/spell
 shell
