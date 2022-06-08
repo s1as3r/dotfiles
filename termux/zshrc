@@ -20,6 +20,7 @@ cdd() { cd "/storage/emulated/0/$1" }
 
 # Path
 pathadd ~/go/bin 
+pathadd ~/.cargo/bin
 
 # Aliases
 
