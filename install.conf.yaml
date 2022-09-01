@@ -12,9 +12,6 @@
     ~/.utility: utility
     ~/.config/awesome: awesome
     ~/.config/kitty: kitty
-    ~/.config/picom.conf: picom.conf
-    ~/.config/nvim: nvim
-    ~/.config/rofi: rofi
     ~/.xprofile: xprofile
 
 - create:
