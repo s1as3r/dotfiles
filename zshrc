@@ -20,6 +20,7 @@ source ~/.utility/functions.sh
 alias icat='kitty +kitten icat'
 alias hg='kitty +kitten hyperlinked_grep'
 
+source /usr/share/autojump/autojump.sh
+
 # Enavle vi mode
 set -o vi
-export KEYTIMEOUT=1
