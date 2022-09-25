@@ -2,18 +2,3 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-
-[submodule "ohmyzsh"]
-	path = ohmyzsh
-	url = https://github.com/ohmyzsh/ohmyzsh
-
-[submodule "awesome/freedesktop"]
-	path = awesome/freedesktop
-	url = https://github.com/lcpz/awesome-freedesktop
-
-[submodule "awesome/lain"]
-	path = awesome/lain
-	url = https://github.com/lcpz/lain
-[submodule "awesome/modules/layout-machi"]
-	path = awesome/modules/layout-machi
-	url = https://github.com/xinhaoyuan/layout-machi
