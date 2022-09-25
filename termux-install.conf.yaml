@@ -6,24 +6,12 @@
 - clean: ['~']
 
 - link:
-    ~/.zshrc: termux/zshrc
-    ~/.oh-my-zsh: ohmyzsh
-    ~/.config/nvim: nvim
+    ~/.config/fish: fish
     ~/.termux: termux/termux
-    ~/.utility: utility
     ~/bin: termux/bin 
     ~/internal: /storage/emulated/0/
     ~/bin/termux-file-editor: $PREFIX/bin/nvim
-    ~/.termux/shell: $PREFIX/bin/zsh
+    ~/.termux/shell: $PREFIX/bin/fish
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-
-  - 
-    command:
-      omz=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
-      if [[ ! -d $omz ]]; then 
-        git clone https://github.com/zsh-users/zsh-autosuggestions $omz;
-      fi;
-    description: Cloning zsh-autosuggestions
-

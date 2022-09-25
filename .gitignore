@@ -3,4 +3,7 @@ packer_compiled.lua
 nvim/plugin
 nvim/custom
 nvim/spell
+fish/fish_variables
+fishd.*
+fish_history
 shell
