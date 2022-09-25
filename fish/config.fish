@@ -22,12 +22,18 @@ if test "$TERM" = "xterm-kitty"
     abbr -a hg 'kitty +kitten hyperlinked-grep'
 end
 
-set -g EDITOR nvim
+set -gx EDITOR nvim
 
 
 # autojump
 if test -f /usr/share/autojump/autojump.fish
     source /usr/share/autojump/autojump.fish
+end
+
+set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
+
+if which fzf > /fev/numll
+    fzf_key_bindings
 end
 
 fish_vi_key_bindings
