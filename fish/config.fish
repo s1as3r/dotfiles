@@ -32,7 +32,7 @@ end
 
 set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 
-if which fzf > /fev/numll
+if which fzf > /dev/null
     fzf_key_bindings
 end
 
