@@ -8,8 +8,11 @@ function fish_greeting
 	    echo -e (uname -n | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
 	    echo
 	end
+
     if test -f ~/.taskrc || test -f ~/.config/task/taskrc
-        echo "To-Do: "
-        task next
+        task next &| tee /dev/tty | grep -i "sync required" > /dev/null
+        if test $status -eq 0
+            task sync &> /dev/null &
+        end
     end
 end
