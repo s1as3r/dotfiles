@@ -8,7 +8,7 @@ function fish_greeting
 	    echo -e (uname -n | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
 	    echo
 	end
-    if test -f ~/.taskrc
+    if test -f ~/.taskrc || test -f ~/.config/task/taskrc
         echo "To-Do: "
         task next
     end
