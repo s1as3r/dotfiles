@@ -9,6 +9,7 @@
     ~/.ghci: ghci
     ~/.config/kitty: kitty
     ~/.config/rofi: rofi
+    ~/.Xmodmap: Xmodmap
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
