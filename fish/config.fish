@@ -21,7 +21,7 @@ end
 
 if test "$TERM" = "xterm-kitty"
     abbr -a icat 'kitty +kitten icat'
-    abbr -a hg 'kitty +kitten hyperlinked-grep'
+    function hg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
 end
 
 set -gx EDITOR nvim
