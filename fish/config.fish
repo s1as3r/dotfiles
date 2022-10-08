@@ -22,20 +22,21 @@ end
 if test "$TERM" = "xterm-kitty"
     abbr -a icat 'kitty +kitten icat'
     function hg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
+    function ssh --wraps rg; kitty +kitten ssh $argv; end
 end
 
 set -gx EDITOR nvim
 
-
-# autojump
-if test -f /usr/share/autojump/autojump.fish
-    source /usr/share/autojump/autojump.fish
+# zoxide
+if which zoxide &> /dev/null
+    set -gx _ZO_ECHO 1
+    zoxide init fish --cmd j | source
 end
 
 set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/slas3r/.ghcup/bin # ghcup-env
 
-if which fzf > /dev/null
+if which fzf &> /dev/null
     fzf_key_bindings
 end
 
