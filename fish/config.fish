@@ -4,10 +4,13 @@ abbr -a duh 'du -ha --max-depth=1'
 abbr -a chx 'chmod u+x'
 abbr -a v nvim
 abbr -a gitsc 'git clone --depth=1'
+abbr -a gic 'git commit'
+abbr -a gis 'git status'
 abbr -a o xdg-open
 abbr -a p paru
-abbr -a yay paru -Syu
+abbr -a c cargo
 abbr -a yeet paru -Rns
+abbr -a cmd command
 
 if command -v exa > /dev/null
     abbr -a ls exa
