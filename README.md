@@ -2,7 +2,7 @@
 
 ## Credits
 
-- [Dotbot](https://github.com/anishathalye/dotbot).
+- [Dotbot](https://github.com/anishathalye/dotbot)
 
 - [NeoVim Config](https://astronvim.github.io/)
 
