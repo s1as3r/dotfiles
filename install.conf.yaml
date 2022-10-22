@@ -10,6 +10,7 @@
     ~/.config/kitty: kitty
     ~/.config/rofi: rofi
     ~/.Xmodmap: Xmodmap
+    ~/.bashrc: bashrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

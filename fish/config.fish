@@ -17,7 +17,6 @@ if command -v exa > /dev/null
     abbr -a l 'exa -l'
     abbr -a ll 'exa -la'
 else
-    abbr -a ls ls
     abbr -a l 'ls -lh'
     abbr -a ll 'ls -lah'
 end
