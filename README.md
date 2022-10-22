@@ -1,8 +1,9 @@
-# dots
-Dotfiles.
+# dotfiles
 
-[AwesomeWM Config](https://github.com/lcpz/awesome-copycats)
+## Credits
 
-[NeoVim Config](https://astronvim.github.io/)
+- [Dotbot](https://github.com/anishathalye/dotbot).
 
-Uses [dotbot](https://github.com/anishathalye/dotbot).
+- [NeoVim Config](https://astronvim.github.io/)
+
+- [Rofi Config](https://github.com/adi1090x)
