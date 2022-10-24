@@ -1,0 +1,16 @@
+#!/bin/bash
+query=$(echo $1 | tr -s "" | tr " " "+")
+href=$(
+  curl -s "https://www.imdb.com/find?q=$query" | 
+  pup 'a[class=ipc-metadata-list-summary-item__t] attr{href}' | 
+  head -n1
+)
+url="https://imdb.com$href"
+
+score=$(
+  curl -Ls $url |
+  pup 'div[data-testid$=rating__score] > span:first-of-type text{}' | 
+  head -n1
+)
+
+echo "$score/10"

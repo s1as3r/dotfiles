@@ -181,4 +181,4 @@ if [[ -f /usr/share/fzf/key-bindings.bash ]]; then
 fi
 
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --border"
-
+export PATH="$PATH:~/.dotfiles/scripts"

@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+from sys import argv, stdin
+
+
+def print_ords(inp: str):
+    for i in inp:
+        print(f"{i!r}: {ord(i)}")
+
+
+if len(argv) != 2:
+    print_ords(stdin.read())
+else:
+    print_ords(argv[1])
