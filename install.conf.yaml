@@ -17,27 +17,36 @@
 
 - link:
     ~/.config/fish: fish
-    ~/.ghci: ghci
-    ~/.config/kitty: kitty
-    ~/.config/rofi: rofi
-    ~/.Xmodmap: Xmodmap
     ~/.bashrc: bashrc
     ~/.config/nvim/lua/user: nvim
+    ~/.ghci:
+        path: ghci
+        if: 'bash -c "[[ `uname -o` != Android ]]"'
+    ~/.config/kitty:
+        path: kitty
+        if: 'bash -c "[[ `uname -o` != Android ]]"'
+    ~/.config/rofi:
+        path: rofi
+        if: 'bash -c "[[ `uname -o` != Android ]]"'
+    ~/.Xmodmap:
+        path: Xmodmap
+        if: 'bash -c "[[ `uname -o` != Android ]]"'
+    
     ~/.termux:
         path: termux/termux
-        if: '[[ `uname -o` = Android ]]'
+        if: 'bash -c "[[ `uname -o` = Android ]]"'
     ~/bin:
         path: termux/bin
-        if: '[[ `uname -o` = Android ]]'
+        if: 'bash -c "[[ `uname -o` = Android ]]"'
     ~/internal:
         path: /storage/emulated/0
-        if: '[[ `uname -o` = Android ]]'
+        if: 'bash -c "[[ `uname -o` = Android ]]"'
     ~/bin/termux-file-editor:
         path: $PREFIX/bin/nvim
-        if: '[[ `uname -o` = Android ]]'
+        if: 'bash -c "[[ `uname -o` = Android ]]"'
     ~/.termux/shell:
         path: $PREFIX/bin/fish
-        if: '[[ `uname -o` = Android ]]'
+        if: 'bash -c "[[ `uname -o` = Android ]]"'
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
