@@ -4,6 +4,17 @@
 
 - clean: ['~']
 
+- shell:
+  - 
+    command:
+      bash -c 
+      "if [[ ! -d ~/.config/nvim ]]; then
+      git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim &&
+      echo cloned AstroNvim;
+      fi"
+    stdout: true
+    quiet: true
+
 - link:
     ~/.config/fish: fish
     ~/.ghci: ghci
@@ -11,6 +22,7 @@
     ~/.config/rofi: rofi
     ~/.Xmodmap: Xmodmap
     ~/.bashrc: bashrc
+    ~/.config/nvim/lua/user: nvim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
