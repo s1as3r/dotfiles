@@ -23,6 +23,21 @@
     ~/.Xmodmap: Xmodmap
     ~/.bashrc: bashrc
     ~/.config/nvim/lua/user: nvim
+    ~/.termux:
+        path: termux/termux
+        if: '[[ `uname -o` = Android ]]'
+    ~/bin:
+        path: termux/bin
+        if: '[[ `uname -o` = Android ]]'
+    ~/internal:
+        path: /storage/emulated/0
+        if: '[[ `uname -o` = Android ]]'
+    ~/bin/termux-file-editor:
+        path: $PREFIX/bin/nvim
+        if: '[[ `uname -o` = Android ]]'
+    ~/.termux/shell:
+        path: $PREFIX/bin/fish
+        if: '[[ `uname -o` = Android ]]'
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
