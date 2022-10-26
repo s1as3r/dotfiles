@@ -10,4 +10,7 @@ def print_ords(inp: str):
 if len(argv) != 2:
     print_ords(stdin.read())
 else:
-    print_ords(argv[1])
+    if len(argv[1]) == 1:
+        print(ord(argv[1]))
+    else:
+        print_ords(argv[1])

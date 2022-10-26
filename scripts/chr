@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 from sys import argv, stdin
 
+
+def char_rep(n):
+    return repr(chr(int(n.strip()))).strip("'")
+
+
 if len(argv) != 2:
     for i in stdin.read().split():
         if (i := i.strip()).isnumeric():
-            print(f"{i}: {chr(int(i))!r}")
+            print(f"{i}: {char_rep(i)}")
 else:
-    print(f"{chr(int(argv[1].strip()))!r}")
+    print(f"{char_rep(argv[1])}")

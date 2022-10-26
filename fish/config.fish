@@ -42,5 +42,5 @@ if which fzf &> /dev/null
     fzf_key_bindings
 end
 
-set fish_user_paths $fish_user_paths "~/.dotfiles/scripts/"
+fish_add_path $HOME/.dotfiles/scripts
 fish_vi_key_bindings
