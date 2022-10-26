@@ -13,6 +13,12 @@ local config = {
     },
   },
 
+  options = {
+    opt = {
+      guifont = { "CaskaydiaCove Nerd Font Mono", ":h12" }
+    }
+  },
+
   plugins = {
     init = {
       { "khaveesh/vim-fish-syntax" },
