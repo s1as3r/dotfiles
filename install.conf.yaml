@@ -19,6 +19,7 @@
     ~/.config/fish: fish
     ~/.bashrc: bashrc
     ~/.config/nvim/lua/user: nvim
+    ~/.ipython/profile_default/ipython_config.py: ipython_config.py
     ~/.ghci:
         path: ghci
         if: 'bash -c "[[ `uname -o` != Android ]]"'
