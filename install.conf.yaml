@@ -22,6 +22,9 @@
     ~/.ghci:
         path: ghci
         if: 'bash -c "[[ `uname -o` != Android ]]"'
+    ~/.haskeline:
+        path: haskeline
+        if: 'bash -c "[[ `uname -o` != Android ]]"'
     ~/.config/kitty:
         path: kitty
         if: 'bash -c "[[ `uname -o` != Android ]]"'

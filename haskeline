@@ -1,0 +1,4 @@
+editMode: Vi
+completionType: ListCompletion
+historyDuplicates: IgnoreConsecutive
+
