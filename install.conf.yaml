@@ -4,6 +4,12 @@
 
 - clean: ['~']
 
+- shell:
+  - 
+    command: 'git submodule update --init --recursive' 
+    description: 'Installing submodules'
+    quiet: true
+
 - if:
     cond: 'bash -c "[[ ! -d ~/.config/nvim ]]"'
     met:
@@ -36,6 +42,4 @@
         ~/bin/termux-file-editor: $PREFIX/bin/nvim
         ~/.termux/shell: $PREFIX/bin/fish
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
 

@@ -111,8 +111,8 @@ shopt -s expand_aliases
 shopt -s histappend
 
 #
-# # ex - archive extractor
-# # usage: ex <file>
+# extract - archive extractor
+# usage: extract <file>
 extract()
 {
   if [ -f $1 ] ; then
@@ -128,11 +128,28 @@ extract()
       *.zip)       unzip $1     ;;
       *.Z)         uncompress $1;;
       *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via extract()" ;;
+      *)           echo "'$1' cannot be extracted via extract" ;;
     esac
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# creade a directory and cd into it
+# usage: mcd <directory>
+mcd() {
+	mkdir $1 && cd $1
+}
+
+# execute a command inside a directory
+# usage: xin <directory> <command...>
+xin() {
+	( cd $1 && shift && $@ )
+}
+
+# update dotfiles
+dfu() {
+	( cd ~/.dotfiles/ && git pull --ff-only && ./install -q )
 }
 
 export EDITOR=nvim

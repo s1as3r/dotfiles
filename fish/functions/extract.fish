@@ -1,3 +1,5 @@
+# archive extractor
+# usage: extract <file>
 function extract
     switch $argv[1]
         case "*.tar.bz2"
@@ -23,6 +25,6 @@ function extract
         case "*.7z"
             7z x $argv[1]
         case "*"
-            echo "'$argv[1]' cannot be extracted via extract()"
+            echo "'$argv[1]' cannot be extracted via extract"
     end        
 end
