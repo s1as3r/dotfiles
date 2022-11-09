@@ -4,53 +4,37 @@
 
 - clean: ['~']
 
-- shell:
-  - 
-    command:
-      bash -c 
-      "if [[ ! -d ~/.config/nvim ]]; then
-      git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim &&
-      echo cloned AstroNvim;
-      fi"
-    stdout: true
-    quiet: true
+- if:
+    cond: 'bash -c "[[ ! -d ~/.config/nvim ]]"'
+    met:
+    - shell:
+      - 
+        command: 'git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim'
+        description: 'Cloning AstroNvim'
+        quiet: true
 
 - link:
     ~/.config/fish: fish
     ~/.bashrc: bashrc
     ~/.config/nvim/lua/user: nvim
     ~/.ipython/profile_default/ipython_config.py: ipython_config.py
-    ~/.ghci:
-        path: ghci
-        if: 'bash -c "[[ `uname -o` != Android ]]"'
-    ~/.haskeline:
-        path: haskeline
-        if: 'bash -c "[[ `uname -o` != Android ]]"'
-    ~/.config/kitty:
-        path: kitty
-        if: 'bash -c "[[ `uname -o` != Android ]]"'
-    ~/.config/rofi:
-        path: rofi
-        if: 'bash -c "[[ `uname -o` != Android ]]"'
-    ~/.Xmodmap:
-        path: Xmodmap
-        if: 'bash -c "[[ `uname -o` != Android ]]"'
-    
-    ~/.termux:
-        path: termux/termux
-        if: 'bash -c "[[ `uname -o` = Android ]]"'
-    ~/bin:
-        path: termux/bin
-        if: 'bash -c "[[ `uname -o` = Android ]]"'
-    ~/internal:
-        path: /storage/emulated/0
-        if: 'bash -c "[[ `uname -o` = Android ]]"'
-    ~/bin/termux-file-editor:
-        path: $PREFIX/bin/nvim
-        if: 'bash -c "[[ `uname -o` = Android ]]"'
-    ~/.termux/shell:
-        path: $PREFIX/bin/fish
-        if: 'bash -c "[[ `uname -o` = Android ]]"'
+
+- if:
+    cond: 'bash -c "[[ `uname -o` != Android ]]"'
+    met:
+    - link:
+        ~/.ghci: ghci
+        ~/.haskeline: haskeline
+        ~/.config/kitty: kitty
+        ~/.config/rofi: rofi
+        ~/.Xmodmap: Xmodmap
+    unmet:
+    - link:
+        ~/.termux: termux/termux
+        ~/bin: termux/bin
+        ~/internal: /storage/emulated/0
+        ~/bin/termux-file-editor: $PREFIX/bin/nvim
+        ~/.termux/shell: $PREFIX/bin/fish
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
