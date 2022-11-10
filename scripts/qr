@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# display a qrcode
+# usage: qr <text>
+if [[ "$TERM" = "xterm-kitty" ]]; then
+	qrencode -o - $1 | kitty +kitten icat
+elif $( command -v timg > /dev/null ); then
+	qrencode -o - $1 | timg -C - 
+elif $( command -v feh > /dev/null ); then
+	qrencode -o - $1 | feh - 
+else
+	>&2 echo "timg/feh not found" 
+fi

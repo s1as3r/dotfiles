@@ -152,16 +152,6 @@ dfu() {
 	( cd ~/.dotfiles/ && git pull --ff-only && ./install -q )
 }
 
-# display a qrcode
-# usage: qr <text>
-qr() {
-	if [[ "$TERM" = "xterm-kitty" ]]; then
-		qrencode -o - $1 | kitty +kitten icat
-	else
-		qrencode -o - $1 | feh - 
-	fi
-}
-
 export EDITOR=nvim
 set -o vi
 
