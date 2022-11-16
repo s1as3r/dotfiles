@@ -10,6 +10,10 @@ local config = {
   mappings = {
     n = {
       ["<leader><enter>"] = { "<cmd>.!bash<cr>", desc = "execute current line as bash command" },
+      ["<C-u>"] = { "<C-u>zz" },
+      ["<C-d>"] = { "<C-d>zz" },
+      ["n"] = { "nzz" },
+      ["N"] = { "Nzz" }
     },
   },
 
@@ -19,10 +23,17 @@ local config = {
     }
   },
 
+  lsp = {
+    formatting = {
+      format_on_save = false,
+    },
+  },
+
   plugins = {
     init = {
       { "khaveesh/vim-fish-syntax" },
       { "fladson/vim-kitty" },
+      { "lervag/vimtex" }
     },
 
     ["mason-lspconfig"] = {
@@ -32,8 +43,9 @@ local config = {
         "pyright",
         "bashls",
         "sumneko_lua",
-        "hls",
+        -- "hls",
         "gopls",
+        "ltex"
       },
     }
   },
