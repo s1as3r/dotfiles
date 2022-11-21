@@ -24,13 +24,13 @@
     ~/.bashrc: bashrc
     ~/.config/nvim/lua/user: nvim
     ~/.ipython/profile_default/ipython_config.py: ipython_config.py
+    ~/.haskeline: haskeline
 
 - if:
     cond: 'bash -c "[[ `uname -o` != Android ]]"'
     met:
     - link:
         ~/.ghci: ghci
-        ~/.haskeline: haskeline
         ~/.config/kitty: kitty
         ~/.config/rofi: rofi
         ~/.Xmodmap: Xmodmap
