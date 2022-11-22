@@ -27,13 +27,26 @@ local config = {
     formatting = {
       format_on_save = false,
     },
+    ["server-settings"] = {
+      efm = {
+        init_options = { documentFormatting = true },
+        settings = {
+          languages = {
+            python = { {
+              formatCommand = "black --quiet -",
+              formatStdin = true
+            } }
+          }
+        }
+      }
+    }
   },
 
   plugins = {
     init = {
       { "khaveesh/vim-fish-syntax" },
       { "fladson/vim-kitty" },
-      { "lervag/vimtex" }
+      { "lervag/vimtex" },
     },
 
     ["mason-lspconfig"] = {
@@ -43,9 +56,10 @@ local config = {
         "pyright",
         "bashls",
         "sumneko_lua",
-        -- "hls",
+        "hls",
         "gopls",
-        "ltex"
+        "ltex",
+        "efm"
       },
     }
   },
