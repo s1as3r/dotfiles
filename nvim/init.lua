@@ -1,3 +1,5 @@
+local null_ls = require("null-ls")
+
 local config = {
   header = {
     "███    ██ ██    ██ ██ ███    ███",
@@ -27,19 +29,6 @@ local config = {
     formatting = {
       format_on_save = false,
     },
-    ["server-settings"] = {
-      efm = {
-        init_options = { documentFormatting = true },
-        settings = {
-          languages = {
-            python = { {
-              formatCommand = "black --quiet -",
-              formatStdin = true
-            } }
-          }
-        }
-      }
-    }
   },
 
   plugins = {
@@ -47,6 +36,14 @@ local config = {
       { "khaveesh/vim-fish-syntax" },
       { "fladson/vim-kitty" },
       { "lervag/vimtex" },
+    },
+    ["null-ls"] = {
+      sources = {
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.formatting.isort,
+        null_ls.builtins.diagnostics.mypy,
+      }
     },
 
     ["mason-lspconfig"] = {
@@ -59,7 +56,6 @@ local config = {
         "hls",
         "gopls",
         "ltex",
-        "efm"
       },
     }
   },
