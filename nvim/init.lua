@@ -12,10 +12,12 @@ local config = {
   mappings = {
     n = {
       ["<leader><enter>"] = { "<cmd>.!bash<cr>", desc = "execute current line as bash command" },
+      ["<leader>T"] = {"<cmd>Telescope<cr>", desc = "Telescope"},
+      ["<C-'>"] = { "<cmd>ToggleTerm<cr>", desc = "toggle terminal" },
       ["<C-u>"] = { "<C-u>zz" },
       ["<C-d>"] = { "<C-d>zz" },
       ["n"] = { "nzz" },
-      ["N"] = { "Nzz" }
+      ["N"] = { "Nzz" },
     },
   },
 
