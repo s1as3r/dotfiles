@@ -12,7 +12,7 @@ local config = {
   mappings = {
     n = {
       ["<leader><enter>"] = { "<cmd>.!bash<cr>", desc = "execute current line as bash command" },
-      ["<leader>T"] = {"<cmd>Telescope<cr>", desc = "Telescope"},
+      ["<leader>T"] = { "<cmd>Telescope<cr>", desc = "Telescope" },
       ["<C-'>"] = { "<cmd>ToggleTerm<cr>", desc = "toggle terminal" },
       ["<C-u>"] = { "<C-u>zz" },
       ["<C-d>"] = { "<C-d>zz" },
@@ -38,10 +38,25 @@ local config = {
       { "khaveesh/vim-fish-syntax" },
       { "fladson/vim-kitty" },
       { "lervag/vimtex" },
+      {
+        "kdheepak/cmp-latex-symbols",
+        after = "nvim-cmp",
+        config = function()
+          astronvim.add_user_cmp_source({
+            name = "latex_symbols",
+            priority = 700,
+            option = {
+              strategy = 1,
+            }
+          })
+        end
+      },
     },
+
     ["null-ls"] = {
       sources = {
         null_ls.builtins.diagnostics.flake8,
+        -- null_ls.builtins.diagnostics.ruff,
         null_ls.builtins.diagnostics.mypy,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.fish,
@@ -55,7 +70,6 @@ local config = {
       }
     },
 
-
     ["mason-lspconfig"] = {
       ensure_installed = {
         "rust_analyzer",
@@ -66,6 +80,7 @@ local config = {
         "hls",
         "gopls",
         "texlab",
+        "julials",
       },
     }
   },
