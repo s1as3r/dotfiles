@@ -12,5 +12,5 @@ return {
       "texlab",
       "julials",
     },
-  }
+  },
 }
