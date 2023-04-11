@@ -3,6 +3,7 @@ return {
   "fladson/vim-kitty",
   "lervag/vimtex",
   "simrat39/rust-tools.nvim",
+  "p00f/clangd_extensions.nvim",
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
