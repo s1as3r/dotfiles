@@ -13,6 +13,7 @@ abbr -a yeet paru -Rns
 abbr -a cmd command
 abbr -a wwc "warp-cli connect"
 abbr -a wwd "warp-cli disconnect"
+abbr -a po poetry
 
 if command -v exa > /dev/null
     abbr -a ls exa
