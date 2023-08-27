@@ -46,4 +46,14 @@ if which fzf &> /dev/null
 end
 
 fish_add_path $HOME/.dotfiles/scripts
+fish_add_path $HOME/anaconda3/bin
 fish_vi_key_bindings
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/slas3r/anaconda3/bin/conda
+    eval /home/slas3r/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+conda deactivate
+# <<< conda initialize <<<
+

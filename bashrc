@@ -199,3 +199,4 @@ fi
 
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --border"
 export PATH="$PATH:~/.dotfiles/scripts"
+
