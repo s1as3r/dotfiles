@@ -12,7 +12,8 @@ return {
 
             null_ls.builtins.formatting.beautysh,
             null_ls.builtins.formatting.black,
-            null_ls.builtins.formatting.isort, null_ls.builtins.formatting.jq,
+            null_ls.builtins.formatting.isort,
+            null_ls.builtins.formatting.jq,
             null_ls.builtins.formatting.prettier
         }
     end

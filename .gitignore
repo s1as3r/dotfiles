@@ -7,3 +7,4 @@ fish/fish_variables
 fishd.*
 fish_history
 shell
+lazy-lock.json
