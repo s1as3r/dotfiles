@@ -352,7 +352,7 @@ local servers = {
     },
   },
   bashls = {},
-  hls = {},
+  -- hls = {},
   julials = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
