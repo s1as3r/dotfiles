@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+echo "import Pluto; Pluto.run()" | julia
