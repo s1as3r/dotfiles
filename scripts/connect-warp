@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title pluto
+# @raycast.title Connect Warp
 # @raycast.mode compact
 
 # Optional parameters:
-# @raycast.icon 🤖
+# @raycast.icon 🌩️
 
 # Documentation:
-# @raycast.description starts pluto
+# @raycast.description Connect Cloudflare Warp using its cli
 # @raycast.author Arbaaz Shafiq
 # @raycast.authorURL https://github.com/s1as3r
 
-echo "import Pluto; Pluto.run()" | julia
+warp-cli connect

@@ -147,7 +147,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.o.smartindent = true
+-- vim.o.smartindent = true
 vim.o.expandtab = true
 
 -- Enable mouse mode
