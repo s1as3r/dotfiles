@@ -14,7 +14,7 @@ abbr -a c cargo
 abbr -a cmd command
 abbr -a wwc "warp-cli connect"
 abbr -a wwd "warp-cli disconnect"
-abbr -a po poetry
+abbr -a p poetry
 abbr -a g git
 
 if command -v exa > /dev/null
