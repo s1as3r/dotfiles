@@ -8,3 +8,4 @@ fishd.*
 fish_history
 shell
 lazy-lock.json
+.DS_Store
