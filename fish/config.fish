@@ -3,19 +3,26 @@ abbr -a ipy ipython
 abbr -a duh "du -ha --max-depth=1"
 abbr -a chx "chmod u+x"
 abbr -a v nvim
-abbr -a gitsc "git clone --depth=1"
-abbr -a gic "git commit"
-abbr -a gis "git status"
-# abbr -a o xdg-open
-abbr -a o open
-# abbr -a p paru
 abbr -a c cargo
-# abbr -a yeet paru -Rns
 abbr -a cmd command
 abbr -a wwc "warp-cli connect"
 abbr -a wwd "warp-cli disconnect"
 abbr -a p poetry
 abbr -a g git
+abbr -a gitsc "git clone --depth=1"
+abbr -a gic "git commit"
+abbr -a gis "git status"
+abbr -a gil "git log --oneline --graph"
+
+
+if test $(uname -o) = "Darwin"
+    # mac specefic aliases
+    abbr -a o open
+else
+    abbr -a o xdg-open
+    abbr -a p paru
+    abbr -a yeet paru -Rns
+end
 
 if command -v exa > /dev/null
     abbr -a ls exa
