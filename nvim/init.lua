@@ -365,6 +365,7 @@ local servers = {
   julials = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
+  ruff_lsp = {},
   pyright = {},
 
   lua_ls = {
@@ -389,6 +390,7 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
@@ -397,7 +399,7 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
-  end
+  end,
 }
 
 -- CMP
