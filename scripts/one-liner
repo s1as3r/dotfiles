@@ -2,16 +2,15 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Word Count
+# @raycast.title One Liner
 # @raycast.mode compact
 
 # Optional parameters:
-# @raycast.icon 🔡
-# @raycast.argument1 { "type": "text", "placeholder": "some text" }
+# @raycast.icon 🤖
+# @raycast.argument1 { "type": "text", "placeholder": "cool ass one liner" }
 
 # Documentation:
-# @raycast.description Counts the Word
 # @raycast.author Arbaaz Shafiq
 # @raycast.authorURL https://github.com/s1as3r
 
-echo "$1" | wc -w
+echo $(eval "$1")
