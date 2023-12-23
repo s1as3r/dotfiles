@@ -50,9 +50,6 @@ end
 set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/slas3r/.ghcup/bin # ghcup-env
 
-if which fzf &> /dev/null
-    fzf_key_bindings
-end
 
 if test $(uname -o) = "Darwin"
     fish_add_path /opt/homebrew/bin
