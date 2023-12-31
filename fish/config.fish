@@ -36,7 +36,7 @@ end
 if test "$TERM" = "xterm-kitty"
     abbr -a icat 'kitty +kitten icat'
     function hg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
-    function ssh --wraps rg; kitty +kitten ssh $argv; end
+    function ssh --wraps ssh; kitty +kitten ssh $argv; end
 end
 
 set -gx EDITOR nvim
