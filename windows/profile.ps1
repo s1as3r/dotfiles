@@ -16,6 +16,8 @@ function mcd($dir) {
         Set-Location $dir
 }
 
+function dfu() { Set-Location "~/.dotfiles" && git pull --ff-only && ./install.ps1 -q }
+
 # omp
 $OMP_THEME = "$env:USERPROFILE\Documents\PowerShell\theme.omp.json" 
 oh-my-posh init pwsh --config $OMP_THEME | Invoke-Expression
