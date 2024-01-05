@@ -5,7 +5,6 @@ $DOTBOT_DIR="dotbot"
 $DOTBOT_BIN="bin/dotbot"
 $BASEDIR=$(Split-Path $MyInvocation.MyCommand.Path)
 
-
 Set-Location "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
