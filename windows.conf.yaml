@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      relink: true
+    shell:
+      quiet: true
+
+- shell:
+    - command: "git submodule update --init --recursive"
+      description: "Installing submodules"
+    - command: 'pwsh -c "If (-not (Get-InstalledModule PSFzf)) { Install-Module -Name PSFzf }"'
+      description: "Installing PSFzf"
+    - command: 'pwsh -c "If (-not (Get-Command oh-my-posh)) { winget install JanDeDobbeleer.OhMyPosh -s winget }"'
+      description: "Installing OhMyPosh"
+
+- link:
+    ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: windows/profile.ps1
+    ~/Documents/PowerShell/theme.omp.json: windows/theme.omp.json
+    ~/AppData/Local/nvim: nvim
+    ~/.ipython/profile_default/ipython_config.py: ipython_config.py
+    ~/.haskeline: haskeline
+    ~/.ghci: ghci
