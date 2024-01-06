@@ -1,11 +1,12 @@
 # aliases and wrapper functions
-Set-Alias py python3
+Set-Alias py python
 Set-Alias ipy ipython
 Set-Alias v nvim
 Set-Alias c cargo
 Set-Alias po poetry
 Set-Alias g git
 Set-Alias ls lsd
+Set-Alias grep rg
 
 function gic() { git commit @args }
 function gis() { git status @args }
@@ -16,7 +17,7 @@ function mcd($dir) {
         Set-Location $dir
 }
 
-function dfu() { Set-Location "~/.dotfiles" && git pull --ff-only && ./install.ps1 -q }
+function dfu() { pwsh -c { Set-Location "~/.dotfiles" && git pull --ff-only && ./install.ps1 -q } }
 
 # omp
 $OMP_THEME = "$env:USERPROFILE\Documents\PowerShell\theme.omp.json" 
