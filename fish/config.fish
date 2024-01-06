@@ -15,7 +15,7 @@ abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
 
 
-if test $(uname -o) = "Darwin"
+if test (uname -o) = "Darwin"
     # mac specefic aliases
     abbr -a o open
 else
@@ -51,7 +51,7 @@ set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/slas3r/.ghcup/bin # ghcup-env
 
 
-if test $(uname -o) = "Darwin"
+if test (uname -o) = "Darwin"
     fish_add_path /opt/homebrew/bin
 end
 
