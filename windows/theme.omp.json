@@ -5,10 +5,15 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#98C379",
           "style": "plain",
+          "properties": {
+            "always_enabled": true
+          },
+          "foreground_templates": [
+            "{{ if .Error }}#e06c75{{ else }}#98c379{{ end }}"
+          ],
           "template": "λ",
-          "type": "text"
+          "type": "status"
         },
         {
           "foreground": "#56B6C2",
@@ -28,12 +33,6 @@
           "style": "plain",
           "template": "[{{ .HEAD }}{{ if .Staging.Changed }}<#00AA00> ● {{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }}<#D75F00> ● {{ .Working.String }}</>{{ end }}]",
           "type": "git"
-        },
-        {
-          "foreground": "#BF616A",
-          "style": "plain",
-          "template": " ✗",
-          "type": "status"
         }
       ],
       "type": "prompt"
@@ -43,17 +42,17 @@
       "segments": [
         {
           "type": "text",
-          "foreground": "#282C34",
-          "template": "<#282C34>[{{ .Env.SHELL_VI_MODE }}]</>",
+          "foreground": "#505867",
+          "template": "<#505867>[{{ .Env.SHELL_VI_MODE }}]</>",
           "style": "plain"
         },
         {
-          "foreground": "#282C34",
+          "foreground": "#505867",
           "properties": {
             "time_format": "15:04"
           },
           "style": "plain",
-          "template": "<#282C34>[{{ .CurrentDate | date .Format }}]</>",
+          "template": "<#505867>[{{ .CurrentDate | date .Format }}]</>",
           "type": "time"
         }
       ],
