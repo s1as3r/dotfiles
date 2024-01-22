@@ -7,6 +7,7 @@ Set-Alias po poetry
 Set-Alias g git
 Set-Alias ls lsd
 Set-Alias grep rg
+Set-Alias touch New-Item
 
 function gic() { git commit @args }
 function gis() { git status @args }

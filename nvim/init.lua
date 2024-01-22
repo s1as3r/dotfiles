@@ -183,7 +183,7 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
-vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12"
+vim.o.guifont = "CaskaydiaMono Nerd Font Mono:h12"
 
 -- KEYMAPS
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
