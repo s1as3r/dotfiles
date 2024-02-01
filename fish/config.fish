@@ -14,14 +14,20 @@ abbr -a gic "git commit"
 abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
 
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+fish_add_path $HOME/.dotfiles/scripts
+fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/go/bin
+
 
 if test (uname -o) = "Darwin"
     # mac specefic aliases
     abbr -a o open
 else
     abbr -a o xdg-open
-    abbr -a p paru
-    abbr -a yeet paru -Rns
+    # abbr -a p paru
+    # abbr -a yeet paru -Rns
 end
 
 if command -v exa > /dev/null
@@ -42,7 +48,7 @@ end
 set -gx EDITOR nvim
 
 # zoxide
-if which zoxide &> /dev/null
+if command -v zoxide > /dev/null
     set -gx _ZO_ECHO 1
     zoxide init fish --cmd j | source
 end
@@ -54,8 +60,5 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; se
 if test (uname -o) = "Darwin"
     fish_add_path /opt/homebrew/bin
 end
-
-fish_add_path $HOME/.dotfiles/scripts
-fish_add_path $HOME/.cargo/bin
 
 fish_vi_key_bindings
