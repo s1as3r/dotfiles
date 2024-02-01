@@ -2,13 +2,14 @@
     link:
       relink: true
       create: true
+    shell:
+      quiet: true
 
 - clean: ["~"]
 
 - shell:
     - command: "git submodule update --init --recursive"
       description: "Installing submodules"
-      quiet: true
 
 - link:
     ~/.config/fish: fish
