@@ -55,6 +55,7 @@ end
 
 set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/slas3r/.ghcup/bin # ghcup-env
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
 
 
 if test (uname -o) = "Darwin"
@@ -62,3 +63,6 @@ if test (uname -o) = "Darwin"
 end
 
 fish_vi_key_bindings
+
+# opam configuration
+source /home/slas3r/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
