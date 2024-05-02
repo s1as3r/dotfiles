@@ -1,24 +1,26 @@
-abbr -a py python3
-abbr -a ipy ipython
+abbr -a py "python3"
+abbr -a ipy "ipython"
 abbr -a duh "du -ha --max-depth=1"
 abbr -a chx "chmod u+x"
-abbr -a v nvim
-abbr -a c cargo
-abbr -a cmd command
+abbr -a v "nvim"
+abbr -a c "cargo"
+abbr -a cmd "command"
 abbr -a wwc "warp-cli connect"
 abbr -a wwd "warp-cli disconnect"
-abbr -a po poetry
-abbr -a g git
-abbr -a gitsc "git clone --depth=1"
+abbr -a po "poetry"
+abbr -a g "git"
+abbr -a gisc "git clone --depth=1"
 abbr -a gic "git commit"
 abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
+abbr -a bat "batcat"
 
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 fish_add_path $HOME/.dotfiles/scripts
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/go/bin
+fish_add_path /usr/local/cuda-12.4/bin
 
 
 if test (uname -o) = "Darwin"
@@ -30,10 +32,10 @@ else
     # abbr -a yeet paru -Rns
 end
 
-if command -v exa > /dev/null
-    abbr -a ls exa
-    abbr -a l 'exa -l'
-    abbr -a ll 'exa -la'
+if command -v eza > /dev/null
+    abbr -a ls eza
+    abbr -a l 'eza -l'
+    abbr -a ll 'eza -la'
 else
     abbr -a l 'ls -lh'
     abbr -a ll 'ls -lah'
@@ -64,5 +66,9 @@ end
 
 fish_vi_key_bindings
 
-# opam configuration
+# opam
 source /home/slas3r/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+# cuda 
+set -gx CUDNN_PATH (dirname (python3 -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
+set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$CUDNN_PATH/lib:/usr/local/cuda/lib64"
