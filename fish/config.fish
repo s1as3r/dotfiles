@@ -21,6 +21,7 @@ fish_add_path $HOME/.dotfiles/scripts
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/go/bin
 fish_add_path /usr/local/cuda-12.4/bin
+fish_add_path $HOME/.juliaup/bin
 
 
 if test (uname -o) = "Darwin"
@@ -68,7 +69,3 @@ fish_vi_key_bindings
 
 # opam
 source /home/slas3r/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
-# cuda 
-set -gx CUDNN_PATH (dirname (python3 -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
-set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$CUDNN_PATH/lib:/usr/local/cuda/lib64"
