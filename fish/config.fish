@@ -15,7 +15,6 @@ abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
 abbr -a bat "batcat"
 
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 fish_add_path $HOME/.dotfiles/scripts
 fish_add_path $HOME/.cargo/bin
@@ -23,6 +22,7 @@ fish_add_path $HOME/go/bin
 fish_add_path /usr/local/cuda-12.4/bin
 fish_add_path $HOME/.juliaup/bin
 
+set -gx EDITOR nvim
 
 if test (uname -o) = "Darwin"
     # mac specefic aliases
@@ -48,7 +48,9 @@ if test "$TERM" = "xterm-kitty"
     function ssh --wraps ssh; kitty +kitten ssh $argv; end
 end
 
-set -gx EDITOR nvim
+if test -f "/home/linuxbrew/.linuxbrew/bin/brew"
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end
 
 # zoxide
 if command -v zoxide > /dev/null
