@@ -1,10 +1,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require("./lazy")
-require("./lsp")
-require("./telescope")
-require("./cmp")
+require("setup.lazy")
+require("setup.lsp")
+require("setup.telescope")
+require("setup.cmp")
 
 -- OPTIONS
 -- Set highlight on search
