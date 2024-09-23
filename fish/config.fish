@@ -42,6 +42,10 @@ else
     abbr -a ll 'ls -lah'
 end
 
+if command -v paru > /dev/null
+    abbr -a p "paru"
+end
+
 if test "$TERM" = "xterm-kitty"
     abbr -a icat 'kitty +kitten icat'
     function hg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
