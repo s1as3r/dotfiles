@@ -25,7 +25,6 @@
       - link:
           ~/.ghci: ghci
           ~/.config/kitty: kitty
-          ~/.config/rofi: rofi
           ~/.Xmodmap: Xmodmap
     unmet:
       - link:
