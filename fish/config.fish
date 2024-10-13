@@ -29,8 +29,6 @@ if test (uname -o) = "Darwin"
     abbr -a o open
 else
     abbr -a o xdg-open
-    # abbr -a p paru
-    # abbr -a yeet paru -Rns
 end
 
 if command -v eza > /dev/null
@@ -40,10 +38,6 @@ if command -v eza > /dev/null
 else
     abbr -a l 'ls -lh'
     abbr -a ll 'ls -lah'
-end
-
-if command -v paru > /dev/null
-    abbr -a p "paru"
 end
 
 if test "$TERM" = "xterm-kitty"
