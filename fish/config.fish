@@ -13,8 +13,6 @@ abbr -a gisc "git clone --depth=1"
 abbr -a gic "git commit"
 abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
-abbr -a bat "batcat"
-
 
 fish_add_path $HOME/.dotfiles/scripts
 fish_add_path $HOME/.cargo/bin
