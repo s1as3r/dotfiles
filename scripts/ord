@@ -7,10 +7,10 @@ def print_ords(inp: str):
         print(f"{i!r}: {ord(i)}")
 
 
-if len(argv) != 2:
-    print_ords(stdin.read())
-else:
-    if len(argv[1]) == 1:
-        print(ord(argv[1]))
-    else:
-        print_ords(argv[1])
+match argv[1:]:
+    case [char] if len(char) == 1:
+        print(ord(char))
+    case [*words] if words:
+        print_ords("".join(words))
+    case _:
+        print_ords(stdin.read())

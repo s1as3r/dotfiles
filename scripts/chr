@@ -2,13 +2,19 @@
 from sys import argv, stdin
 
 
-def char_rep(n):
-    return repr(chr(int(n.strip()))).strip("'")
+def char_rep(n: int):
+    return (x := repr(chr(n))).strip(x[0])
 
 
-if len(argv) != 2:
-    for i in stdin.read().split():
-        if (i := i.strip()).isnumeric():
-            print(f"{i}: {char_rep(i)}")
-else:
-    print(f"{char_rep(argv[1])}")
+def print_chrs(nums: list[str]):
+    for num in filter(lambda x: x.strip().isnumeric(), nums):
+        print(f"{num}: {char_rep(int(num))}")
+
+
+match argv[1:]:
+    case [num] if num.strip().isnumeric():
+        print(char_rep(int(num)))
+    case [*nums] if nums:
+        print_chrs(nums)
+    case _:
+        print_chrs(stdin.read().split())
