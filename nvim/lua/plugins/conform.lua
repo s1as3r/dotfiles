@@ -4,7 +4,7 @@ return {
     notify_on_error = false,
     format_on_save = false,
     formatters_by_ft = {
-      python = { 'isort', 'black' },
+      python = { 'ruff_organize_imports', 'ruff_fmt' },
     },
     default_format_opts = {
       lsp_format = 'fallback',

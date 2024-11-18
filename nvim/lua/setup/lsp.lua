@@ -53,7 +53,19 @@ local servers = {
   julials = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
-  ruff_lsp = {},
+  ruff = {},
+  pyright = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { '*' },
+      },
+    },
+  },
 
   lua_ls = {
     Lua = {
