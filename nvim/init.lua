@@ -60,6 +60,7 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 -- buffers
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>', { desc = "Next Buffer" })
 vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>', { desc = "Previous Buffer" })
+vim.keymap.set('n', '<C-q>', '<cmd>bdelete<cr>', { desc = "Delete Buffer" })
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
