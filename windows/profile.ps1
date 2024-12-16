@@ -8,6 +8,7 @@ Set-Alias g git
 Set-Alias ls lsd
 Set-Alias grep rg
 Set-Alias touch New-Item
+Set-Alias x explorer
 
 function gic() { git commit @args }
 function gis() { git status @args }
@@ -40,3 +41,8 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory
 # Zoxide
 $env:_ZO_ECHO = '1'
 Invoke-Expression (& { (zoxide init powershell --cmd j | Out-String) })
+
+#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+#f45873b3-b655-43a6-b217-97c00aa0db58
