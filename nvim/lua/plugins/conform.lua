@@ -5,6 +5,8 @@ return {
     format_on_save = false,
     formatters_by_ft = {
       python = { 'ruff_organize_imports', 'ruff_format' },
+      haskell = { 'ormolu' },
+      json = { 'jq' }
     },
     default_format_opts = {
       lsp_format = 'fallback',
