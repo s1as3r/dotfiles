@@ -14,6 +14,7 @@ abbr -a gicl "git clone"
 abbr -a gic "git commit"
 abbr -a gis "git status"
 abbr -a gil "git log --oneline --graph"
+abbr -a ju "just"
 
 if command -v eza > /dev/null
     abbr -a ls eza
