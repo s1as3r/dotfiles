@@ -20,6 +20,10 @@ set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+set -gx ANDROID_HOME "/home/slas3r/Android/Sdk/"
+
+fish_add_path "$ANDROID_HOME/emulator"
+fish_add_path "$ANDROID_HOME/platform-tools"
 
 # zoxide
 if command -v zoxide > /dev/null
