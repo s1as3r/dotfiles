@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 if [[ $# -lt 1 ]]; then
-        echo "Usage: gitignore <language>"
-        exit 1
+    echo "Usage: gitignore <language>"
+    exit 1
 fi
 
-if [[ $2 = "-s" ]]; then
-        SAVE_TO=".gitignore"
+if ! command -v "gh" 2>&1 >/dev/null; then
+    wget --quiet "https://raw.githubusercontent.com/github/gitignore/refs/heads/main/$1.gitignore" --output-document -
 else
-        SAVE_TO="-"
+    gh repo gitignore view "$1"
 fi
-
-
-wget --quiet --output-document $SAVE_TO "https://raw.githubusercontent.com/github/gitignore/refs/heads/main/$1.gitignore"
