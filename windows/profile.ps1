@@ -15,7 +15,7 @@ function gis() { git status @args }
 function gil() { git log --oneline --graph @args }
 
 function vsenv() {
-  Launch-VsDevShell.ps1 -Arch amd64
+  Launch-VsDevShell.ps1 -Arch amd64 -SkipAutomaticLocation
 }
 
 function mcd($dir) {
