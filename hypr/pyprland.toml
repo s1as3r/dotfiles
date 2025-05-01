@@ -1,0 +1,20 @@
+[pyprland]
+plugins = [
+  "scratchpads"
+]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+position = "17% 6%"
+size = "65% 60%"
+offset = "200%"
+
+[scratchpads.htop]
+animation = "fromLeft"
+command = "kitty --class kitty-taskbar -e htop"
+class = "kitty-taskbar"
+size = "30% 80%"
+offset = "200%"
+

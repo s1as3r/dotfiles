@@ -27,6 +27,13 @@
           ~/.ghci: ghci
           ~/.config/kitty: kitty
           ~/.Xmodmap: Xmodmap
+          ~/.config/waybar: waybar
+          ~/.config/hypr: hypr
+          ~/.config/wal: wal
+          ~/.config/swaync: swaync
+          ~/.config/wofi: wofi
+      - shell:
+          - command: "wal -i ~/Pictures/wallpaper.png"
     unmet:
       - link:
           ~/.termux: termux/termux

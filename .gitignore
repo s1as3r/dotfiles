@@ -11,3 +11,4 @@ lazy-lock.json
 .DS_Store
 fish/completions
 fish/conf.d/
+wal/coloschemes
