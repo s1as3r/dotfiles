@@ -7,14 +7,20 @@ plugins = [
 animation = "fromTop"
 command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
-position = "17% 6%"
-size = "65% 60%"
+position = "17% 5%"
+size = "70% 60%"
 offset = "200%"
 
 [scratchpads.htop]
 animation = "fromLeft"
 command = "kitty --class kitty-taskbar -e htop"
 class = "kitty-taskbar"
-size = "30% 80%"
+size = "45% 80%"
 offset = "200%"
 
+[scratchpads.clipse]
+animation = "fromRight"
+command = "kitty --class kitty-clipse -e clipse"
+class = "kitty-clipse"
+size = "45% 80%"
+offset = "200%"

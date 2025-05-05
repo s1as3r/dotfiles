@@ -25,21 +25,25 @@ window {
     all:unset;
     padding: 20px;
     border-radius: 0px;
-    background-color: alpha(@background,.5);
+    background-color: alpha(@background,.9);
 }
+
 #inner-box {
     margin: 2px;
     padding: 5px
     border: none;
 }
+
 #outer-box {    
     border: none;
 }
+
 #scroll {
     margin: 0px;
     padding: 30px;
     border: none;
 }
+
 #input {
     all:unset;
     margin-left:20px;
@@ -53,11 +57,13 @@ window {
     border-radius:0;
     background-color: alpha(@background,.2);
 }
+
 #input image {
     border: none;
     color: @red;
     padding-right:10px;
 }
+
 #input * {
     border: none;
     outline: none;
@@ -69,37 +75,43 @@ window {
 
     border-radius:0;
 }
+
 #text {
     margin: 5px;
     border: none;
     color: @text;
     outline: none;
 }
+
 #text {
     margin: 5px;
     border: none;
     color: @text;
     outline: none;
 }
+
 #entry {
     border: none;
     margin: 5px;
     padding: 10px;
 }
+
 #entry arrow {
     border: none;
     color: @lavender;
-
 }
+
 #entry:selected {
     box-shadow: 1px 1px 5px rgba(255,255,255, .03);
     border: none;
     border-radius: 0px;
     background-color:transparent;
 }
+
 #entry:selected #text {
     color: @mauve;
 }
+
 #entry:drop(active) {
     background-color: @lavender !important;
 }
