@@ -33,7 +33,7 @@
           ~/.config/swaync: swaync
           ~/.config/wofi: wofi
       - shell:
-          - command: "wal -i ~/Pictures/wallpaper.png"
+          - command: "wal -st -i ~/Pictures/wallpaper.png"
     unmet:
       - link:
           ~/.termux: termux/termux
