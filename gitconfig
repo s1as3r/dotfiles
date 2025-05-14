@@ -2,6 +2,23 @@
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
+
 [user]
 	email = arbaazshafiq@gmail.com
 	name = Arbaaz Shafiq
+
+[core]
+        compressing = 9
+	preloadindex = true
+
+[url "https://github.com/s1as3r/"]
+	insteadOf = "s:"
+[url "https://github.com/"]
+	insteadOf = "gh:"
+
+[status]
+	branch = true
+	showStash = true
+
+[rebase]
+	missingCommitsCheck = true
