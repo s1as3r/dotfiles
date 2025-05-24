@@ -22,3 +22,5 @@
 
 [rebase]
 	missingCommitsCheck = true
+
+# vim: set ft=gitconfig :

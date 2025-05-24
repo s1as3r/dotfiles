@@ -1,6 +1,4 @@
-#
-# moodified manjaro bashrc
-#
+## moodified manjaro bashrc
 [[ $- != *i* ]] && return
 
 colors() {
