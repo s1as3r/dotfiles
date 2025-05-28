@@ -78,8 +78,8 @@
                     "command": "blueman-manager"
                 },
                 {
-                    "label":"󰤄",
-                    "command": "swaync-client -d",
+                    "label":"󰩈",
+                    "command": "wlogout -b 2",
                     "type":"toggle"
                 },
                 {
