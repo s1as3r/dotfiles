@@ -5,7 +5,7 @@ Set-Alias v nvim
 Set-Alias c cargo
 Set-Alias po poetry
 Set-Alias g git
-Set-Alias ls lsd
+Set-Alias ls eza
 Set-Alias grep rg
 Set-Alias touch New-Item
 Set-Alias x FPilot
