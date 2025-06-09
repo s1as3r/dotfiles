@@ -16,6 +16,7 @@
     ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: windows/profile.ps1
     ~/Documents/PowerShell/theme.omp.json: windows/theme.omp.json
     ~/AppData/Local/nvim: nvim
-    ~/.ipython/profile_default/ipython_config.py: ipython_config.py
+    ~/.ipython/profile_default/ipython_config.py: ipython/ipython_config.py
+    ~/.ipython/profile_default/startup/prompt.py: ipython/prompt.py
     ~/.haskeline: haskeline
     ~/.ghci: ghci
