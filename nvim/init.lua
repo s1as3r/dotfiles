@@ -4,7 +4,6 @@ vim.g.maplocalleader = ' '
 require("setup.lazy")
 require("setup.lsp")
 require("setup.telescope")
-require("setup.cmp")
 
 -- OPTIONS
 -- Set highlight on search
