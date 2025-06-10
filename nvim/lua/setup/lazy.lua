@@ -17,7 +17,10 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  'NMAC427/guess-indent.nvim',
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {},
+  },
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
