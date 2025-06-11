@@ -12,13 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
-  -- Detect tabstop and shiftwidth automatically
-  { 'NMAC427/guess-indent.nvim', opts = {}, },
-
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -37,29 +30,6 @@ require('lazy').setup({
     },
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',      opts = {} },
-  {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-      end,
-    },
-  },
-
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
@@ -68,36 +38,6 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {
-      indent = { char = '┊', },
-      scope = {
-        show_start = false,
-        show_end = false,
-
-      }
-    },
-  },
-
-  -- 'gc' to comment visual regions/lines
-  { 'numToStr/Comment.nvim',        opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -132,11 +72,16 @@ require('lazy').setup({
 
   -- plugins that I dont have any specific configs for
   -- these dont deserve a file in plugins/ ig
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'tikhomirov/vim-glsl',
+  'NoahTheDuke/vim-just',
+  { 'folke/which-key.nvim',         opts = {} },
+  { 'NMAC427/guess-indent.nvim',    opts = {} },
   { 'windwp/nvim-autopairs',        opts = {} },
   { 'max397574/better-escape.nvim', opts = {} },
   { 'folke/snacks.nvim',            opts = {} },
-  'tikhomirov/vim-glsl',
-  'NoahTheDuke/vim-just',
+  { 'numToStr/Comment.nvim',        opts = {} },
 
   { import = 'plugins' },
 }, {})
