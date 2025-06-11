@@ -64,7 +64,8 @@ vim.keymap.set('n', '<C-q>', '<cmd>bdelete<cr>', { desc = 'Delete Buffer' })
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', { callback = function()
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
     vim.highlight.on_yank()
   end,
   group = highlight_group,
@@ -88,3 +89,8 @@ if vim.loop.os_uname().sysname == 'Windows_NT' then
   vim.opt.shellquote = ''
   vim.opt.shellxquote = ''
 end
+
+-- Git Browse using snacks.nvim
+vim.api.nvim_create_user_command('Gbrowse', function()
+  require('snacks').gitbrowse.open()
+end, {})

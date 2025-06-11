@@ -73,14 +73,12 @@ require('lazy').setup({
   -- plugins that I dont have any specific configs for
   -- these dont deserve a file in plugins/ ig
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   'tikhomirov/vim-glsl',
   'NoahTheDuke/vim-just',
   { 'folke/which-key.nvim',         opts = {} },
   { 'NMAC427/guess-indent.nvim',    opts = {} },
   { 'windwp/nvim-autopairs',        opts = {} },
   { 'max397574/better-escape.nvim', opts = {} },
-  { 'folke/snacks.nvim',            opts = {} },
   { 'numToStr/Comment.nvim',        opts = {} },
 
   { import = 'plugins' },
