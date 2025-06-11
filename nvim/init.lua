@@ -1,9 +1,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require("setup.lazy")
-require("setup.lsp")
-require("setup.telescope")
+require('setup.lazy')
+require('setup.lsp')
+require('setup.telescope')
 
 -- OPTIONS
 -- Set highlight on search
@@ -44,28 +44,27 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
-vim.o.guifont = "Iosevka Nerd Font Mono:h14"
+vim.o.guifont = 'Iosevka Nerd Font Mono:h14'
 
 -- KEYMAPS
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
+vim.keymap.set('n', 'j', 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
 
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
 -- buffers
-vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>', { desc = "Next Buffer" })
-vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>', { desc = "Previous Buffer" })
-vim.keymap.set('n', '<C-q>', '<cmd>bdelete<cr>', { desc = "Delete Buffer" })
+vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<C-q>', '<cmd>bdelete<cr>', { desc = 'Delete Buffer' })
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
+vim.api.nvim_create_autocmd('TextYankPost', { callback = function()
     vim.highlight.on_yank()
   end,
   group = highlight_group,
@@ -80,12 +79,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Setting Up Powershell
 -- :help shell-powershell
-if vim.loop.os_uname().sysname == "Windows_NT" then
-  vim.opt.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+  vim.opt.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
   vim.opt.shellcmdflag =
-  "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+  '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";'
   vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
   vim.opt.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
-  vim.opt.shellquote = ""
-  vim.opt.shellxquote = ""
+  vim.opt.shellquote = ''
+  vim.opt.shellxquote = ''
 end

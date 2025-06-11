@@ -85,7 +85,7 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    main = "ibl",
+    main = 'ibl',
     opts = {
       indent = { char = '┊', },
       scope = {
@@ -96,7 +96,7 @@ require('lazy').setup({
     },
   },
 
-  -- "gc" to comment visual regions/lines
+  -- 'gc' to comment visual regions/lines
   { 'numToStr/Comment.nvim',        opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -136,7 +136,7 @@ require('lazy').setup({
   { 'max397574/better-escape.nvim', opts = {} },
   { 'folke/snacks.nvim',            opts = {} },
   'tikhomirov/vim-glsl',
-  "NoahTheDuke/vim-just",
+  'NoahTheDuke/vim-just',
 
   { import = 'plugins' },
 }, {})

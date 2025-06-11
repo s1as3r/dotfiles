@@ -143,9 +143,9 @@ local servers = {
   gopls = {},
   rust_analyzer = {
     settings = {
-      ["rust-analyzer"] = {
+      ['rust-analyzer'] = {
         check = {
-          command = "clippy",
+          command = 'clippy',
         },
       }
     },
