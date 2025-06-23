@@ -25,6 +25,7 @@ return {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     words = { enabled = true },
+    picker = { enabled = true },
   },
   keys = {
     { '<C-e>', function() require('snacks').explorer() end, desc = 'Toggle [E]xplorer' }
