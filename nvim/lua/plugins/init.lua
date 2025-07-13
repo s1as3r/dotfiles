@@ -54,8 +54,14 @@ return {
     opts = {}
   },
 
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {
+      auto_cmd = true
+    }
+  },
+
   { 'folke/which-key.nvim',         opts = {} },
-  { 'NMAC427/guess-indent.nvim',    opts = {} },
   { 'windwp/nvim-autopairs',        opts = {} },
   { 'max397574/better-escape.nvim', opts = {} },
   { 'numToStr/Comment.nvim',        opts = {} },
