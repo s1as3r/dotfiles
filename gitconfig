@@ -10,6 +10,7 @@
 [core]
         compressing = 9
 	preloadindex = true
+	autocrlf = input
 
 [url "https://github.com/s1as3r/"]
 	insteadOf = "s:"
