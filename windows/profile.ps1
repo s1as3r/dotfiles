@@ -11,13 +11,13 @@ Set-Alias touch New-Item
 Set-Alias x FPilot
 Set-Alias ju just
 
-function gic { git commit @args }
-function gis { git status --short @args }
-function gil { git log --oneline --graph @args }
+function gic  { git commit @args }
+function gis  { git status --short @args }
+function gil  { git log --oneline --graph @args }
 function gisc { git clone --depth=1 @args }
-function gid { git diff @args }
+function gid  { git diff @args }
 function gids { git diff --staged @args }
-function gia { git add @args }
+function gia  { git add @args }
 
 function vsenv {
   Launch-VsDevShell.ps1 -Arch amd64 -SkipAutomaticLocation
@@ -40,7 +40,7 @@ function xin {
         [String[]]$command
     )
     $cmdString = $command -join ' '
-    pwsh -c "Set-Location -Path '$path'; $cmdString"
+    pwsh -c "Set-Location -Path '$path' && $cmdString"
 }
 
 

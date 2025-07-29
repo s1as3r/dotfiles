@@ -153,7 +153,7 @@ local servers = {
   bashls = {},
   -- hls = {},
   julials = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  -- html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   ruff = {},
   pyright = {
