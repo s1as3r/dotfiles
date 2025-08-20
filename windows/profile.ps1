@@ -5,11 +5,15 @@ Set-Alias v nvim
 Set-Alias c cargo
 Set-Alias po poetry
 Set-Alias g git
-Set-Alias ls eza
 Set-Alias grep rg
 Set-Alias touch New-Item
 Set-Alias x FPilot
 Set-Alias ju just
+Set-Alias ls eza
+
+function ll  { eza -l }
+function la  { eza -a }
+function lla { eza -la }
 
 function gic  { git commit @args }
 function gis  { git status --short @args }
