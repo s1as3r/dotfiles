@@ -5,6 +5,8 @@ require('setup.lazy')
 require('setup.lsp')
 require('setup.telescope')
 
+local util = require('util')
+
 -- OPTIONS
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -94,3 +96,9 @@ end
 vim.api.nvim_create_user_command('Gbrowse', function()
   require('snacks').gitbrowse.open()
 end, {})
+
+
+util.set_proj_specific_regs("2p2p", {
+  ["b"] = ":w\r:!./build\r",
+  ["n"] = ":w\r:!./build --only-game\r"
+})
