@@ -175,9 +175,6 @@ local servers = {
   },
 }
 
--- Setup neovim lua configuration
-require('neodev').setup()
-
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- Ensure the servers above are installed

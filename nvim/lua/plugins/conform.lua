@@ -6,7 +6,8 @@ return {
     formatters_by_ft = {
       python = { 'ruff_organize_imports', 'ruff_format' },
       haskell = { 'ormolu' },
-      json = { 'jq' }
+      json = { 'jq' },
+      html = { 'prettier' },
     },
     default_format_opts = {
       lsp_format = 'fallback',

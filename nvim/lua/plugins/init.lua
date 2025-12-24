@@ -1,5 +1,14 @@
 return {
   {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -8,8 +17,6 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       { 'j-hui/fidget.nvim',    tag = 'legacy', opts = {} },
-
-      'folke/neodev.nvim',
       'saghen/blink.cmp',
     },
   },
