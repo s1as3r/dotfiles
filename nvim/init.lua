@@ -47,6 +47,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.guifont = 'Iosevka Nerd Font Mono:h14'
+vim.o.winborder = 'rounded'
 
 -- KEYMAPS
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -75,14 +76,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = -1, flat = true }) end,
+  { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Setting Up Powershell
 -- :help shell-powershell
-if vim.loop.os_uname().sysname == 'Windows_NT' then
+if vim.uv.os_uname().sysname == 'Windows_NT' then
   vim.opt.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
   vim.opt.shellcmdflag =
   '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[\'Out-File:Encoding\']=\'utf8\';'

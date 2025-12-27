@@ -56,7 +56,7 @@ return {
       map('n', '<leader>hb', gs.blame_line, { desc = 'git [b]lame line' })
       map('n', '<leader>hd', gs.diffthis, { desc = 'git [d]iff against index' })
       map('n', '<leader>hD', function()
-        gs.diffthis '@'
+        gs.diffthis('@')
       end, { desc = 'git [D]iff against last commit' })
       -- Toggles
       map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })

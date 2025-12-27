@@ -178,7 +178,7 @@ local servers = {
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+local mason_lspconfig = require('mason-lspconfig')
 
 require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(servers) }
 
