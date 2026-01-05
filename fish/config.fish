@@ -5,6 +5,7 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/go/bin
 fish_add_path $HOME/.juliaup/bin
 fish_add_path $HOME/.local/bin
+fish_add_path /opt/cuda/bin
 
 if test (uname -o) = "Darwin"
     fish_add_path /opt/homebrew/bin
