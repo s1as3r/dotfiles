@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
+AVAILABLE_RR=$(wlr-randr --json | jq ".[0].modes.[].refresh")
 match_rr() {
-  for refresh_rate in $(wlr-randr | rg "(\d*.?\d*) Hz" -r '$1' -oNI); do
-    if $(echo $refresh_rate | rg -q "$1"); then
+  for refresh_rate in $AVAILABLE_RR; do
+    if [[ "$(echo $refresh_rate | cut -d"." -f1)" = $1 ]]; then
       echo $refresh_rate;
       return;
     fi
   done
 }
 
-wlr-randr --output eDP-1 --mode 2560x1600@$(match_rr "$1")
+matched_rr=$(match_rr "$1")
+if [[ $matched_rr = "" ]]; then
+  echo -e "available rr:\n$AVAILABLE_RR"
+  exit 1
+fi
+echo "changing rr to $matched_rr"
+wlr-randr --output eDP-1 --mode 2560x1600@$matched_rr
