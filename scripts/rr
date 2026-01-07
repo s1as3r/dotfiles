@@ -1,18 +1,41 @@
 #!/usr/bin/env bash
-AVAILABLE_RR=$(wlr-randr --json | jq ".[0].modes.[].refresh")
+display_no=0
+if [[ $# -eq 2 ]]; then
+  display_no="$2"
+fi
+
+query_rr="$1"
+display_info=$(wlr-randr --json)
+
+if [[ $display_no -lt 0 || $display_no -gt "$(echo "$display_info" | jq 'length - 1')" ]]; then
+  echo "Usage: rr REFRESH_RATE [DISPLAY_NO]"
+  echo "Available Displays:"
+  echo "$display_info" | jq 'to_entries[] | "\(.key): \(.value.name)"' -r
+  exit 1
+fi
+
+display_name=$(echo "$display_info" | jq -r ".[$display_no].name")
+available_rr=$(echo "$display_info" | jq -c ".[$display_no].modes.[].refresh")
+current_mode=$(echo "$display_info" | jq -r ".[$display_no].modes.[] | select(.current == true)")
+current_rr=$(echo "$current_mode" | jq -r '.refresh')
+current_res=$(echo "$current_mode" | jq -r '"\(.width)x\(.height)"')
+
 match_rr() {
-  for refresh_rate in $AVAILABLE_RR; do
-    if [[ "$(echo $refresh_rate | cut -d"." -f1)" = $1 ]]; then
-      echo $refresh_rate;
+  for refresh_rate in $available_rr; do
+    if [[ "$(echo "$refresh_rate" | cut -d"." -f1)" = "$1" ]]; then
+      echo "$refresh_rate";
       return;
     fi
   done
 }
 
-matched_rr=$(match_rr "$1")
+matched_rr=$(match_rr "$query_rr")
+matched_mode="$current_res@$matched_rr"
 if [[ $matched_rr = "" ]]; then
-  echo -e "available rr:\n$AVAILABLE_RR"
+  echo "Current Mode: $current_res@$current_rr"
+  echo "Available RR: $(echo "$available_rr" | tr '\n' ' ')"
   exit 1
 fi
-echo "changing rr to $matched_rr"
-wlr-randr --output eDP-1 --mode 2560x1600@$matched_rr
+
+echo "Changing to $matched_mode on $display_name"
+wlr-randr --output "$display_name" --mode "$matched_mode"
