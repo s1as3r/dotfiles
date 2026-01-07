@@ -8,7 +8,7 @@
 	name = Arbaaz Shafiq
 
 [core]
-        compressing = 9
+	compressing = 9
 	preloadindex = true
 	autocrlf = input
 
