@@ -28,9 +28,9 @@ else
 end
 
 if test "$TERM" = "xterm-kitty"
-    abbr -a kicat 'kitty +kitten icat'
-    function rg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
-    function ssh --wraps ssh; kitty +kitten ssh $argv; end
+    abbr -a kicat 'kitten icat'
+    function rg --wraps rg; kitten hyperlinked_grep $argv; end
+    function ssh --wraps ssh; kitten ssh $argv; end
 end
 
 if test (uname -o) = "Darwin"
