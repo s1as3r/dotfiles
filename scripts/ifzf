@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# reference: https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh
+
+fzf --preview '_ifzf_preview_img {}'

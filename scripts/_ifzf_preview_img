@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# reference: https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh
+
+file=${1/#\~\//$HOME/}
+type=$(file --brief --dereference --mime -- "$file")
+
+if [[ ! "$type" =~ "image/" ]]; then
+  file "$file"
+  exit
+fi
+
+dim=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}
+if [[ $dim == x ]]; then
+  dim=$(stty size < /dev/tty | awk '{print $2 "x" $1}')
+elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size < /dev/tty | awk '{print $1}'))); then
+  dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
+fi
+
+if [[ $KITTY_WINDOW_ID ]] && command -v kitten > /dev/null; then
+  kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file" | sed '$d' | sed $'$s/$/\e[m/'
+else
+  file "$file"
+fi
