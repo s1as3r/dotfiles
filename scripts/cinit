@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+build_file=$(cat <<EOS
+#!/usr/bin/env bash
+BUILD_PATH="build"
+SRC="../src"
+EXE_NAME="main"
+COMPILER="gcc"
+
+# debug flags
+DEBUG=(
+    "-g"
+)
+
+# compile time defines
+DEFINES=()
+
+# linux platform libraries
+LIBS=()
+
+# compiler flags
+COMP_FLAGS=(
+    "-Wall"
+    "-Wextra"
+    "-Wpedantic"
+    "-Werror"
+    "-Wno-unused-parameter"
+    "-Wno-unused-function"
+    "-Wno-unused-variable"
+    "-Og"
+    "-std=c11"
+)
+
+# Build commands
+EXE_CMD=("\$COMPILER" "\${DEFINES[@]}" "\${DEBUG[@]}" "\${COMP_FLAGS[@]}" \
+         "-o" "\$EXE_NAME" "\$SRC/main.c" "\${LIBS[@]}")
+
+EXE_CMD_STR=\$(IFS=' '; echo "\${EXE_CMD[*]}")
+
+# Create build directory if it doesn't exist
+if [[ ! -d "\$BUILD_PATH" ]]; then
+    echo "Created Build Directory"
+    mkdir -p "\$BUILD_PATH"
+fi
+
+cd "\$BUILD_PATH" || exit
+echo "===== \$EXE_NAME ====="
+echo "\$EXE_CMD_STR"
+eval "\$EXE_CMD_STR"
+cd ..
+EOS
+)
+
+defs_file=$(cat <<EOS
+#ifndef _H_BASE_DEFS
+#define _H_BASE_DEFS
+
+// clang-format off
+#include <stdbool.h>
+#include <stdint.h>
+// clang-format on
+
+#define global static
+#define internal static
+#define local_persist static
+
+#define PI32 3.1415926536f
+#define array_count(arr) (sizeof(arr) / sizeof(arr[0]))
+
+// clang-format off
+#define KB(val) ((val)   * 1024LL)
+#define MB(val) (KB(val) * 1024LL)
+#define GB(val) (MB(val) * 1024LL)
+#define TB(val) (GB(val) * 1024LL)
+// clang-format on
+
+typedef int8_t i8;
+typedef int16_t i16;
+typedef int32_t i32;
+typedef int64_t i64;
+
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
+typedef uint64_t usize;
+
+typedef float f32;
+typedef double f64;
+
+#endif // _H_BASE_DEFS
+EOS
+)
+
+main_file=$(cat <<EOS
+// clang-format off
+#include "base.h"
+// clang-format on
+
+i32 main() {
+  return 0;
+}
+EOS
+)
+
+if [[ $# -eq 1 ]]; then
+  mkdir "$1"
+  cd "$1" || exit
+fi
+
+mkdir "src/"
+echo "$defs_file" > "src/base.h"
+echo "$main_file" > "src/main.c"
+echo "$build_file" > "build.sh"
+chmod u+x "build.sh"
