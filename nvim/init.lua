@@ -103,13 +103,3 @@ end
 vim.api.nvim_create_user_command('Gbrowse', function()
   require('snacks').gitbrowse.open()
 end, {})
-
-
-util.set_proj_specific_regs("2p2p", {
-  ["b"] = ":w\r:!./build\r",
-  ["n"] = ":w\r:!./build --only-game\r"
-})
-
-util.set_proj_specific_regs("sstv", {
-  ["b"] = ":w\r:!./build.sh\r:!./build/main",
-})
