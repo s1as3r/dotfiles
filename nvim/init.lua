@@ -85,7 +85,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- scroll keymaps
 vim.keymap.set('n', '<C-y>', '<C-y>', { desc = 'Scroll Up', remap = false })
-vim.keymap.set('n', '<C-h>', '<C-e>', { desc = 'Scroll Down', remap = false })
+vim.keymap.set('n', '<C-b>', '<C-e>', { desc = 'Scroll Down', remap = false })
 
 -- Setting Up Powershell
 -- :help shell-powershell
@@ -108,4 +108,8 @@ end, {})
 util.set_proj_specific_regs("2p2p", {
   ["b"] = ":w\r:!./build\r",
   ["n"] = ":w\r:!./build --only-game\r"
+})
+
+util.set_proj_specific_regs("sstv", {
+  ["b"] = ":w\r:!./build.sh\r:!./build/main",
 })
