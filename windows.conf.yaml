@@ -20,3 +20,4 @@
     ~/.ipython/profile_default/startup/prompt.py: ipython/prompt.py
     ~/.haskeline: haskeline
     ~/.ghci: ghci
+    ~/.gitconfig: gitconfig
