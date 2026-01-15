@@ -83,6 +83,10 @@ vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, flat = tr
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- scroll keymaps
+vim.keymap.set('n', '<C-y>', '<C-y>', { desc = 'Scroll Up', remap = false })
+vim.keymap.set('n', '<C-h>', '<C-e>', { desc = 'Scroll Down', remap = false })
+
 -- Setting Up Powershell
 -- :help shell-powershell
 if vim.uv.os_uname().sysname == 'Windows_NT' then
