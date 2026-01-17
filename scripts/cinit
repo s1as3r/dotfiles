@@ -23,9 +23,6 @@ COMP_FLAGS=(
     "-Wextra"
     "-Wpedantic"
     "-Werror"
-    "-Wno-unused-parameter"
-    "-Wno-unused-function"
-    "-Wno-unused-variable"
     "-Og"
     "-std=c11"
 )
@@ -96,9 +93,21 @@ main_file=$(cat <<EOS
 #include "base.h"
 // clang-format on
 
-i32 main() {
+i32 main(void) {
   return 0;
 }
+EOS
+)
+
+clangd_conf=$(cat <<EOS
+CompileFlags:
+  Add: [
+    "-xc",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+  ]
 EOS
 )
 
@@ -107,8 +116,14 @@ if [[ $# -eq 1 ]]; then
   cd "$1" || exit
 fi
 
+if [ ! -z "$( ls -A '.' )" ]; then
+    echo "directory not empty"
+    exit 1
+fi
+
 mkdir "src/"
 echo "$defs_file" > "src/base.h"
 echo "$main_file" > "src/main.c"
 echo "$build_file" > "build.sh"
+echo "$clangd_conf" > ".clangd"
 chmod u+x "build.sh"
