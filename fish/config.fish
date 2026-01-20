@@ -34,6 +34,9 @@ if command -v zoxide > /dev/null
 end
 
 # opam
-source /home/slas3r/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+source "/home/slas3r/.opam/opam-init/init.fish" > /dev/null 2> /dev/null; or true
+
+# emsdk
+EMSDK_QUIET=1 source "/home/slas3r/.emsdk/emsdk_env.fish"
 
 fish_vi_key_bindings
