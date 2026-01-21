@@ -4,7 +4,7 @@ if [[ $# -lt 1 ]]; then
     exit 1
 fi
 
-if ! command -v "gh" 2>&1 >/dev/null; then
+if ! command -v "gh" > /dev/null 2>&1; then
     wget --quiet "https://raw.githubusercontent.com/github/gitignore/refs/heads/main/$1.gitignore" --output-document -
 else
     gh repo gitignore view "$1"

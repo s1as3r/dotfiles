@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
+
+get_gitignore() {
+    if ! command -v "gh" > /dev/null 2>&1; then
+        wget --quiet "https://raw.githubusercontent.com/github/gitignore/refs/heads/main/C.gitignore" --output-document -
+    else
+        gh repo gitignore view "C"
+    fi
+}
+
+exe_name=${1:-main}
+
 build_file=$(cat <<EOS
 #!/usr/bin/env bash
 BUILD_PATH="build"
 SRC="../src"
-EXE_NAME="main"
+EXE_NAME="$exe_name"
 COMPILER="gcc"
 
 # debug flags
@@ -28,7 +39,7 @@ COMP_FLAGS=(
 )
 
 # Build commands
-EXE_CMD=("\$COMPILER" "\${DEFINES[@]}" "\${DEBUG[@]}" "\${COMP_FLAGS[@]}" \
+EXE_CMD=("\$COMPILER" "\${DEFINES[@]}" "\${DEBUG[@]}" "\${COMP_FLAGS[@]}" \\
          "-o" "\$EXE_NAME" "\$SRC/main.c" "\${LIBS[@]}")
 
 EXE_CMD_STR=\$(IFS=' '; echo "\${EXE_CMD[*]}")
@@ -112,7 +123,9 @@ EOS
 )
 
 if [[ $# -eq 1 ]]; then
-  mkdir "$1"
+  if [[ ! -d $1 ]]; then
+      mkdir "$1"
+  fi
   cd "$1" || exit
 fi
 
@@ -126,4 +139,8 @@ echo "$defs_file" > "src/base.h"
 echo "$main_file" > "src/main.c"
 echo "$build_file" > "build.sh"
 echo "$clangd_conf" > ".clangd"
+
+git init --quiet
+echo -e "build/\n\n$(get_gitignore)" > ".gitignore"
+
 chmod u+x "build.sh"
