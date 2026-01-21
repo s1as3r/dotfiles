@@ -75,4 +75,6 @@ return {
   'tpope/vim-fugitive',
   'tikhomirov/vim-glsl',
   'NoahTheDuke/vim-just',
+  'junegunn/fzf.vim',
+  'habamax/vim-godot',
 }

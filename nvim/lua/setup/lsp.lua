@@ -131,14 +131,25 @@ local servers = {
   },
 }
 
+local non_mason_servers = {
+  gdscript = {},
+}
+
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(servers) }
 
-for _, server_name in ipairs(vim.tbl_keys(servers)) do
-  local server = servers[server_name] or {}
-  server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+function setup_server(server_name, settings)
+  settings.capabilities = vim.tbl_deep_extend('force', {}, capabilities, settings.capabilities or {})
 
-  vim.lsp.config(server_name, server)
+  vim.lsp.config(server_name, settings)
   vim.lsp.enable(server_name)
+end
+
+for _, server_name in pairs(vim.tbl_keys(servers)) do
+  setup_server(server_name, servers[server_name] or {})
+end
+
+for _, server_name in pairs(vim.tbl_keys(non_mason_servers)) do
+  setup_server(server_name, non_mason_servers[server_name] or {})
 end
