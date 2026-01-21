@@ -1,7 +1,7 @@
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [user]
 	email = arbaazshafiq@gmail.com
@@ -24,5 +24,8 @@
 
 [rebase]
 	missingCommitsCheck = true
+
+[init]
+	defaultBranch = main
 
 # vim: set ft=gitconfig :
