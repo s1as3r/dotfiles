@@ -18,7 +18,7 @@ abbr -a gids  "git diff --staged"
 abbr -a gia   "git add"
 abbr -a ju    "just"
 
-if command -v eza > /dev/null
+if $HAVE_EZA
     abbr -a ls eza
     abbr -a l  "eza -l"
     abbr -a ll "eza -la"
@@ -27,14 +27,18 @@ else
     abbr -a ll "ls -lah"
 end
 
-if test "$TERM" = "xterm-kitty"
+if $TERM_IS_KITTY
     abbr -a kicat 'kitten icat'
     function rg --wraps rg; kitten hyperlinked_grep $argv; end
     function ssh --wraps ssh; kitten ssh $argv; end
+    function ls --wraps ls; command ls --hyperlink $argv; end
+
+    if $HAVE_EZA
+        function eza --wraps eza; command eza --hyperlink $argv; end
+    end
 end
 
-if test (uname -o) = "Darwin"
-    # mac specefic aliases
+if $OS_IS_MAC
     abbr -a o open
 else
     abbr -a o xdg-open
