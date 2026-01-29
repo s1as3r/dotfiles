@@ -59,13 +59,14 @@
     },
 
     "network": {
-        "format-wifi": "",
+        "format-wifi": " {essid}",
         "format-ethernet":"",
         "format-disconnected": "",
         "tooltip-format-disconnected": "Error",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} 🖧 ",
-        "on-click": "kitty nmtui"
+        "on-click": "kitty nmtui",
+        "max-length": 15
     },
 
     "bluetooth": {
