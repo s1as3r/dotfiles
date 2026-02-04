@@ -33,6 +33,7 @@
           ~/.config/wal: wal
           ~/.config/swaync: swaync
           ~/.config/wofi: wofi
+          ~/.config/pypr: pypr
       - shell:
           - command: "wal -st -i ~/Pictures/wallpaper.png"
     unmet:
