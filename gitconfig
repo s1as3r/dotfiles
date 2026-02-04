@@ -28,4 +28,7 @@
 [init]
 	defaultBranch = main
 
+[alias]
+	ls = "ls-files"
+
 # vim: set ft=gitconfig :
