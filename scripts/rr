@@ -1,41 +1,93 @@
 #!/usr/bin/env bash
-display_no=0
-if [[ $# -eq 2 ]]; then
-  display_no="$2"
-fi
-
+display_no=${RR_DEFAULT_DISPLAY_NO:-0}
 query_rr="$1"
+[[ $# -eq 2 ]] && display_no="$2"
+
 display_info=$(wlr-randr --json)
+max_display=$(jq 'length - 1' <<< "$display_info")
 
-if [[ $display_no -lt 0 || $display_no -gt "$(echo "$display_info" | jq 'length - 1')" ]]; then
-  echo "Usage: rr REFRESH_RATE [DISPLAY_NO]"
-  echo "Available Displays:"
-  echo "$display_info" | jq 'to_entries[] | "\(.key): \(.value.name)"' -r
-  exit 1
-fi
-
-display_name=$(echo "$display_info" | jq -r ".[$display_no].name")
-available_rr=$(echo "$display_info" | jq -c ".[$display_no].modes.[].refresh")
-current_mode=$(echo "$display_info" | jq -r ".[$display_no].modes.[] | select(.current == true)")
-current_rr=$(echo "$current_mode" | jq -r '.refresh')
-current_res=$(echo "$current_mode" | jq -r '"\(.width)x\(.height)"')
-
-match_rr() {
-  for refresh_rate in $available_rr; do
-    if [[ "$(echo "$refresh_rate" | cut -d"." -f1)" = "$1" ]]; then
-      echo "$refresh_rate";
-      return;
+show_displays() {
+    local filter="$1"
+    echo "Available Displays:"
+    if [[ "$filter" == "enabled" ]]; then
+        jq -r 'to_entries[] | select(.value.enabled == true) | "  [\(.key)] \(.value.name) - \(.value.description)"' <<< "$display_info"
+    else
+        jq -r 'to_entries[] | "  [\(.key)] \(.value.name) - \(.value.description) - Enabled: \(.value.enabled)"' <<< "$display_info"
     fi
-  done
 }
 
-matched_rr=$(match_rr "$query_rr")
-matched_mode="$current_res@$matched_rr"
-if [[ $matched_rr = "" ]]; then
-  echo "Current Mode: $current_res@$current_rr"
-  echo "Available RR: $(echo "$available_rr" | tr '\n' ' ')"
-  exit 1
+show_usage() {
+    echo -e "Usage: rr REFRESH_RATE [DISPLAY_NO]\n"
+}
+
+format_refresh_rates() {
+    sed 's/"//g' | cut -d"." -f1 | sort -n | uniq | awk '{print "  " $1 "Hz"}'
+}
+
+if [[ $display_no -lt 0 || $display_no -gt $max_display ]]; then
+    echo "Error: Invalid display number"
+    show_usage
+    show_displays "all"
+    exit 1
 fi
 
-echo "Changing to $matched_mode on $display_name"
+display_name=$(jq -r ".[$display_no].name" <<< "$display_info")
+display_enabled=$(jq -r ".[$display_no].enabled" <<< "$display_info")
+
+if [[ "$display_enabled" != "true" ]]; then
+    echo -e "Error: Display $display_name is not enabled\n"
+    show_displays "enabled"
+    exit 1
+fi
+
+current_mode=$(jq -r ".[$display_no].modes[] | select(.current == true)" <<< "$display_info")
+if [[ -z "$current_mode" || "$current_mode" == "null" ]]; then
+    echo "Error: No current mode found for display $display_name"
+    exit 1
+fi
+
+current_rr=$(jq -r '.refresh' <<< "$current_mode")
+current_width=$(jq -r '.width' <<< "$current_mode")
+current_height=$(jq -r '.height' <<< "$current_mode")
+current_res="${current_width}x${current_height}"
+current_rr_int=$(cut -d"." -f1 <<< "$current_rr")
+
+current_mode_str="Display: $display_name
+Current Mode: $current_res @ ${current_rr_int}Hz"
+
+available_rr=$(jq -c ".[$display_no].modes[] | select(.width == $current_width and .height == $current_height) | .refresh" <<< "$display_info")
+
+show_available_rates() {
+    echo "$current_mode_str"
+    echo ""
+    echo "Available refresh rates for $current_res:"
+    format_refresh_rates <<< "$available_rr"
+}
+
+match_rr() {
+    while IFS= read -r refresh_rate; do
+        if [[ "$(cut -d"." -f1 <<< "$refresh_rate" | tr -d '"')" == "$1" ]]; then
+            tr -d '"' <<< "$refresh_rate"
+            return 0
+        fi
+    done <<< "$available_rr"
+    return 1
+}
+
+if [[ -z "$query_rr" ]]; then
+    echo "Error: No refresh rate specified"
+    show_usage
+    show_available_rates
+    exit 1
+fi
+
+if ! matched_rr=$(match_rr "$query_rr"); then
+    echo "Error: Refresh rate '${query_rr}Hz' not available for current resolution"
+    echo ""
+    show_available_rates
+    exit 1
+fi
+
+matched_mode="$current_res@$matched_rr"
+echo "Changing $display_name to $matched_mode"
 wlr-randr --output "$display_name" --mode "$matched_mode"

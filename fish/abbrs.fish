@@ -44,3 +44,7 @@ else
     abbr -a o xdg-open
 end
 
+if command -v hyprctl > /dev/null
+    abbr -a monon  'hyprctl keyword monitor "desc:BOE, preferred, auto, 1.25"'
+    abbr -a monoff 'hyprctl keyword monitor "desc:BOE, disable"'
+end

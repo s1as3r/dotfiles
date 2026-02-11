@@ -31,6 +31,7 @@ set -gx EDITOR nvim
 set -gx FZF_DEFAULT_OPTS '--height 70% --layout=reverse --border'
 set -q  GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+set -gx RR_DEFAULT_DISPLAY_NO 1
 
 set -l _android_home "/home/slas3r/Android/Sdk/"
 if test -d $_android_home
