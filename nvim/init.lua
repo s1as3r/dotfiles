@@ -51,6 +51,10 @@ vim.o.termguicolors = true
 vim.o.guifont = 'Iosevka Nerd Font Mono:h14'
 vim.o.winborder = 'rounded'
 
+-- textwidth
+vim.o.textwidth = 80
+vim.o.colorcolumn = "-1"
+
 -- KEYMAPS
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', { silent = true })
