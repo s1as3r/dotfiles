@@ -15,7 +15,7 @@ build_file=$(cat <<EOS
 BUILD_PATH="build"
 SRC="../src"
 EXE_NAME="$exe_name"
-COMPILER="gcc"
+CC="gcc"
 
 # debug flags
 DEBUG=(
@@ -39,7 +39,7 @@ COMP_FLAGS=(
 )
 
 # Build commands
-EXE_CMD=("\$COMPILER" "\${DEFINES[@]}" "\${DEBUG[@]}" "\${COMP_FLAGS[@]}" \\
+EXE_CMD=("\$CC" "\${DEFINES[@]}" "\${DEBUG[@]}" "\${COMP_FLAGS[@]}" \\
          "-o" "\$EXE_NAME" "\$SRC/main.c" "\${LIBS[@]}")
 
 EXE_CMD_STR=\$(IFS=' '; echo "\${EXE_CMD[*]}")

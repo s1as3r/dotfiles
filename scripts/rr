@@ -1,93 +1,150 @@
-#!/usr/bin/env bash
-display_no=${RR_DEFAULT_DISPLAY_NO:-0}
-query_rr="$1"
-[[ $# -eq 2 ]] && display_no="$2"
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from json import loads
+from os import getenv
+from subprocess import run
+from sys import exit, stdout
+from typing import NamedTuple, Self
 
-display_info=$(wlr-randr --json)
-max_display=$(jq 'length - 1' <<< "$display_info")
 
-show_displays() {
-    local filter="$1"
-    echo "Available Displays:"
-    if [[ "$filter" == "enabled" ]]; then
-        jq -r 'to_entries[] | select(.value.enabled == true) | "  [\(.key)] \(.value.name) - \(.value.description)"' <<< "$display_info"
-    else
-        jq -r 'to_entries[] | "  [\(.key)] \(.value.name) - \(.value.description) - Enabled: \(.value.enabled)"' <<< "$display_info"
-    fi
-}
+class PhysicalSize(NamedTuple):
+    width: int
+    height: int
 
-show_usage() {
-    echo -e "Usage: rr REFRESH_RATE [DISPLAY_NO]\n"
-}
 
-format_refresh_rates() {
-    sed 's/"//g' | cut -d"." -f1 | sort -n | uniq | awk '{print "  " $1 "Hz"}'
-}
+class DisplayMode(NamedTuple):
+    width: int
+    height: int
+    refresh: float
+    preferred: bool
+    current: bool
 
-if [[ $display_no -lt 0 || $display_no -gt $max_display ]]; then
-    echo "Error: Invalid display number"
-    show_usage
-    show_displays "all"
-    exit 1
-fi
 
-display_name=$(jq -r ".[$display_no].name" <<< "$display_info")
-display_enabled=$(jq -r ".[$display_no].enabled" <<< "$display_info")
+class Position(NamedTuple):
+    x: int
+    y: int
 
-if [[ "$display_enabled" != "true" ]]; then
-    echo -e "Error: Display $display_name is not enabled\n"
-    show_displays "enabled"
-    exit 1
-fi
 
-current_mode=$(jq -r ".[$display_no].modes[] | select(.current == true)" <<< "$display_info")
-if [[ -z "$current_mode" || "$current_mode" == "null" ]]; then
-    echo "Error: No current mode found for display $display_name"
-    exit 1
-fi
+class DisplayInfo(NamedTuple):
+    name: str
+    description: str
+    make: str
+    model: str
+    serial: str
+    physical_size: PhysicalSize
+    enabled: bool
+    modes: list[DisplayMode]
+    position: Position | None = None
+    transform: str | None = None
+    scale: float | None = None
+    adaptive_sync: bool | None = None
 
-current_rr=$(jq -r '.refresh' <<< "$current_mode")
-current_width=$(jq -r '.width' <<< "$current_mode")
-current_height=$(jq -r '.height' <<< "$current_mode")
-current_res="${current_width}x${current_height}"
-current_rr_int=$(cut -d"." -f1 <<< "$current_rr")
+    @classmethod
+    def from_dict(cls, di: dict) -> Self:
+        modes = [DisplayMode(**mode) for mode in di.pop("modes")]
+        physical_size = PhysicalSize(**di.pop("physical_size"))
+        position_d = di.pop("position", None)
+        position = None if position_d is None else Position(**position_d)
+        return cls(**di, physical_size=physical_size, position=position, modes=modes)
 
-current_mode_str="Display: $display_name
-Current Mode: $current_res @ ${current_rr_int}Hz"
 
-available_rr=$(jq -c ".[$display_no].modes[] | select(.width == $current_width and .height == $current_height) | .refresh" <<< "$display_info")
+def get_cli_parser() -> ArgumentParser:
+    parser = ArgumentParser(prog="rr", description="change/print refresh rate")
+    parser.add_argument(
+        "refresh",
+        nargs="?",
+        type=float,
+        metavar="REFRESH_RATE",
+    )
+    parser.add_argument(
+        "--display",
+        "-d",
+        type=int,
+        metavar="N",
+        default=getenv("RR_DEFAULT_DISPLAY_NO", 0),
+        help="change/print display %(metavar)s's rr"
+        + " (default = %(default)s (env: RR_DEFAULT_DISPLAY_NO))",
+    )
+    return parser
 
-show_available_rates() {
-    echo "$current_mode_str"
-    echo ""
-    echo "Available refresh rates for $current_res:"
-    format_refresh_rates <<< "$available_rr"
-}
 
-match_rr() {
-    while IFS= read -r refresh_rate; do
-        if [[ "$(cut -d"." -f1 <<< "$refresh_rate" | tr -d '"')" == "$1" ]]; then
-            tr -d '"' <<< "$refresh_rate"
-            return 0
-        fi
-    done <<< "$available_rr"
-    return 1
-}
+def get_displays() -> list[DisplayInfo]:
+    res = run(["wlr-randr", "--json"], capture_output=True)
+    res.check_returncode()
 
-if [[ -z "$query_rr" ]]; then
-    echo "Error: No refresh rate specified"
-    show_usage
-    show_available_rates
-    exit 1
-fi
+    return [DisplayInfo.from_dict(di) for di in loads(res.stdout)]
 
-if ! matched_rr=$(match_rr "$query_rr"); then
-    echo "Error: Refresh rate '${query_rr}Hz' not available for current resolution"
-    echo ""
-    show_available_rates
-    exit 1
-fi
 
-matched_mode="$current_res@$matched_rr"
-echo "Changing $display_name to $matched_mode"
-wlr-randr --output "$display_name" --mode "$matched_mode"
+def show_displays(
+    displays: list[DisplayInfo],
+) -> None:
+    print("Available Displays:")
+    for i, display in enumerate(displays):
+        print(f"\t[{i}]: {display.name} - {display.description} | {display.enabled}")
+
+
+def match_rr(available_rr: list[float], query_rr: float) -> None | float:
+    for rr in available_rr:
+        if abs(rr - query_rr) < 1:
+            return rr
+    return None
+
+
+def main():
+    args = get_cli_parser().parse_args()
+    displays = get_displays()
+    if args.display not in range(0, len(displays)):
+        print(f"Error: invalid display no ({args.display})")
+        show_displays(displays)
+        exit(1)
+
+    display = displays[args.display]
+    if not display.enabled:
+        print(f"Error: display {args.display} not enabled")
+        show_displays(displays)
+        exit(1)
+
+    current_mode_l = [mode for mode in display.modes if mode.current]
+    if not current_mode_l:
+        print(f"Error: no current mode found for display {args.display}")
+        exit(1)
+    current_mode = current_mode_l[0]
+
+    available_rr = sorted(
+        {
+            mode.refresh
+            for mode in display.modes
+            if mode.width == current_mode.width and mode.height == current_mode.height
+        }
+    )
+    disp_available_rr = "Available Refresh Rates:\n\t" + "\n\t".join(
+        f"{rr}Hz" for rr in available_rr
+    )
+
+    if args.refresh is None:
+        print(f"Display: {display.name}")
+        print(
+            f"Current Mode: {current_mode.width}x{current_mode.height}@{current_mode.refresh}"
+        )
+        print(disp_available_rr)
+        exit(0)
+
+    matched_rr = match_rr(available_rr, args.refresh)
+    if matched_rr is None:
+        print(f"Error: refresh rate ({args.refresh}) not valid for current res")
+        print(disp_available_rr)
+        exit(1)
+
+    matched_mode = f"{current_mode.width}x{current_mode.height}@{matched_rr}"
+    print(f"Changing {display.name} to {matched_mode}")
+
+    exit(
+        run(
+            ["wlr-randr", "--output", display.name, "--mode", matched_mode],
+            stdout=stdout,
+        ).returncode
+    )
+
+
+if __name__ == "__main__":
+    main()
