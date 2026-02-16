@@ -133,6 +133,7 @@ local servers = {
 
 local non_mason_servers = {
   gdscript = {},
+  glsl_analyzer = {},
 }
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
