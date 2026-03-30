@@ -16,7 +16,7 @@ abbr -a gil   "git log --oneline --graph"
 abbr -a gid   "git diff"
 abbr -a gids  "git diff --staged"
 abbr -a gia   "git add"
-abbr -a ju    "just"
+abbr -a ts    "tailscale"
 
 if $HAVE_EZA
     abbr -a ls eza
