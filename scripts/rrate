@@ -49,7 +49,7 @@ class DisplayInfo(NamedTuple):
 
 
 def get_cli_parser() -> ArgumentParser:
-    parser = ArgumentParser(prog="rr", description="change/print refresh rate")
+    parser = ArgumentParser(prog="rrate", description="change/print refresh rate")
     parser.add_argument(
         "refresh",
         nargs="?",
