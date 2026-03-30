@@ -1,6 +1,6 @@
 # archive extractor
 # usage: extract <file>
-function extract --description "extract an archive"
+function extract -d "extract an archive"
     switch $argv[1]
         case "*.tar.bz2"
             tar xjf $argv[1]

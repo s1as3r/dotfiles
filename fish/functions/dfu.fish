@@ -1,4 +1,4 @@
 # update dotfiles
-function dfu
+function dfu -d "update dotfiles"
     fish -c "cd ~/.dotfiles/ && git pull --ff-only && ./install -q"
 end
