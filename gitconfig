@@ -23,7 +23,7 @@
 	showStash = true
 
 [rebase]
-	missingCommitsCheck = true
+	missingCommitsCheck = warn
 
 [init]
 	defaultBranch = main
@@ -32,3 +32,8 @@
 	ls = "ls-files"
 
 # vim: set ft=gitconfig :
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
