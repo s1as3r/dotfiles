@@ -55,7 +55,34 @@ vim.o.winborder = 'rounded'
 vim.o.textwidth = 80
 vim.o.colorcolumn = "-1"
 
+
+-- Diagnostic Config
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config {
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = vim.diagnostic.severity.ERROR },
+
+  virtual_text = true,
+  virtual_lines = false,
+
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float({
+        bufnr = bufnr,
+        score = 'cursor',
+        focus = false
+      })
+    end
+  }
+}
+
 -- KEYMAPS
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', { silent = true })
 
@@ -80,14 +107,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- Diagnostic keymaps
-vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end,
-  { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end,
-  { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- scroll keymaps
 vim.keymap.set('n', '<C-y>', '<C-y>', { desc = 'Scroll Up', remap = false })
