@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
@@ -55,6 +57,13 @@ vim.o.winborder = 'rounded'
 vim.o.textwidth = 80
 vim.o.colorcolumn = "-1"
 
+-- whitespace characters
+vim.o.list = true
+vim.opt.listchars = { tab = '󰌒 ', trail = '.', nbsp = '␣' }
+
+vim.o.inccommand = 'split'
+vim.o.cursorline = true
+vim.o.scrolloff = 5
 
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
