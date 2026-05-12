@@ -14,11 +14,9 @@ require('snacks').setup({
     sections = {
       { section = 'header' },
       { title = "MRU",            padding = 1 },
-      { section = "recent_files", limit = 6,                            padding = 1 },
+      { section = "recent_files", limit = 5,                            padding = 1 },
       { title = "MRU ",           file = vim.fn.fnamemodify(".", ":~"), padding = 1 },
-      { section = "recent_files", cwd = true,                           limit = 6,  padding = 1 },
-      { title = "Sessions",       padding = 1 },
-      { section = "projects",     padding = 1 },
+      { section = "recent_files", cwd = true,                           limit = 5,  padding = 1 },
       { section = "keys" },
     },
   },
