@@ -1,85 +1,71 @@
-return {
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
-  {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      { 'mason-org/mason.nvim', config = true },
-      'mason-org/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+local gh = require("util").gh
 
-      { 'j-hui/fidget.nvim',    opts = {} },
-      'saghen/blink.cmp',
-    },
-  },
+-- lsp
+vim.pack.add({
+  gh('neovim/nvim-lspconfig'),
+  gh('mason-org/mason.nvim'),
+  gh('mason-org/mason-lspconfig.nvim'),
+  gh('WhoIsSethDaniel/mason-tool-installer.nvim'),
+  gh('j-hui/fidget.nvim'),
+})
+require('fidget').setup({})
 
-  {
-    -- Atom OneDark
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+-- theme
+vim.pack.add({ gh('navarasu/onedark.nvim') })
+vim.cmd.colorscheme('onedark')
 
-  -- Fuzzy Finder
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        version = "^1.0.0",
-      },
-    },
-  },
-
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
-    dependencies = {
-      { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
-    },
-    build = ':TSUpdate',
-  },
-
-  {
-    'akinsho/bufferline.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {}
-  },
-
-  {
-    'NMAC427/guess-indent.nvim',
-    opts = {
-      auto_cmd = true
-    }
-  },
-
-  { 'folke/which-key.nvim',         opts = {} },
-  { 'windwp/nvim-autopairs',        opts = {} },
-  { 'max397574/better-escape.nvim', opts = {} },
-  { 'numToStr/Comment.nvim',        opts = {} },
-  'tpope/vim-fugitive',
-  'tikhomirov/vim-glsl',
-  'NoahTheDuke/vim-just',
-  'junegunn/fzf.vim',
-  'habamax/vim-godot',
+-- telescope
+local telescope_plugins = {
+  gh('nvim-lua/plenary.nvim'),
+  gh('nvim-telescope/telescope.nvim'),
+  gh('nvim-telescope/telescope-live-grep-args.nvim'),
 }
+if vim.fn.executable('make') == 1 then
+  table.insert(telescope_plugins, gh('nvim-telescope/telescope-fzf-native.nvim'))
+end
+vim.pack.add(telescope_plugins)
+
+-- treesitter
+vim.pack.add {
+  { src = gh('nvim-treesitter/nvim-treesitter'),             version = 'main' },
+  { src = gh('nvim-treesitter/nvim-treesitter-textobjects'), version = 'main' },
+}
+
+-- utilities
+if vim.g.have_nerd_font then vim.pack.add({ gh('nvim-tree/nvim-web-devicons') }) end
+
+vim.pack.add({
+  gh('akinsho/bufferline.nvim'),
+  gh('NMAC427/guess-indent.nvim'),
+  gh('folke/which-key.nvim'),
+  gh('windwp/nvim-autopairs'),
+  gh('max397574/better-escape.nvim'),
+  gh('numToStr/Comment.nvim'),
+  gh('tpope/vim-fugitive'),
+  gh('tikhomirov/vim-glsl'),
+  gh('NoahTheDuke/vim-just'),
+  gh('junegunn/fzf.vim'),
+  gh('habamax/vim-godot'),
+  gh('folke/lazydev.nvim'),
+})
+
+require('bufferline').setup()
+require('guess-indent').setup({ auto_cmd = true })
+require('which-key').setup()
+require('nvim-autopairs').setup()
+require('better_escape').setup()
+require('Comment').setup()
+
+require('lazydev').setup({
+  library = {
+    { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  },
+})
+
+-- load modular plugin files
+local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'plugins')
+for fname, type in vim.fs.dir(plugins_dir) do
+  if type == 'file' and fname:match('%.lua$') and fname ~= 'init.lua' then
+    require('plugins.' .. fname:gsub('%.lua$', ''))
+  end
+end

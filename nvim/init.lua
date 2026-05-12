@@ -4,7 +4,9 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
-require('setup.lazy')
+require('setup.pack')
+require('plugins')
+
 require('setup.lsp')
 require('setup.treesitter')
 require('setup.telescope')

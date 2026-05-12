@@ -13,4 +13,6 @@ function util.set_proj_specific_regs(project_name, regs)
   end
 end
 
+function util.gh(repo) return 'https://github.com/' .. repo end
+
 return util

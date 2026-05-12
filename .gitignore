@@ -9,6 +9,7 @@ fishd.*
 fish_history
 shell
 lazy-lock.json
+nvim-pack-lock.json
 .DS_Store
 fish/completions
 wal/coloschemes
