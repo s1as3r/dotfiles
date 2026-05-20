@@ -1,6 +1,6 @@
--- https://wiki.hyprland.org/Configuring/Basics/Monitors/
 require("binds")
 
+-- https://wiki.hyprland.org/Configuring/Basics/Monitors/
 hl.monitor({
   output = "desc:Dell",
   mode = "highres",
@@ -14,6 +14,30 @@ hl.monitor({
   position = "auto",
   scale = 1.25
 })
+
+local function disable_boe_if_have_dell(timeout)
+  return function()
+    hl.timer(function()
+      local have_dell = false
+      for _, mon in ipairs(hl.get_monitors()) do
+        if mon.description:find("Dell") then
+          have_dell = true
+        end
+      end
+
+      if have_dell then
+        hl.monitor({
+          output = "desc:BOE",
+          disabled = true
+        })
+      end
+      -- hl.notification.create({ text = "disbled boe", timeout = 3000, color = "#00FFFF" })
+    end, { timeout = timeout, type = "oneshot" })
+  end
+end
+
+hl.on("hyprland.start", disable_boe_if_have_dell(500))
+-- hl.on("config.reloaded", disable_boe_if_have_dell(500))
 
 -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", 16)
