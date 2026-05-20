@@ -67,8 +67,8 @@ hl.config({
     border_size = 2,
 
     col = {
-      active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)", angle = 45 } },
-      inactive_border = "rgba(595959aa)"
+      active_border = { colors = { "#33ccffee", "#00ff99ee", angle = 45 } },
+      inactive_border = "#595959aa"
     },
 
     resize_on_border = true,
@@ -90,7 +90,7 @@ hl.config({
       enabled = true,
       range = 4,
       render_power = 3,
-      color = "rgba(1a1a1aee)",
+      color = "#1a1a1aee",
     },
 
     -- https://wiki.hyprland.org/Configuring/Basics/Variables/--blur
