@@ -5,7 +5,7 @@ local main_mod = "SUPER"
 local terminal = "kitty"
 local file_manager = "nautilus"
 local menu = { name = "wofi", cmd = "wofi -n" }
-local browser = "helium-browser"
+local browser = "firefox"
 
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(main_mod .. " + e", hl.dsp.exec_cmd(file_manager))
