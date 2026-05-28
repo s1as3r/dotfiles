@@ -1,33 +1,16 @@
 require("binds")
 
 -- https://wiki.hyprland.org/Configuring/Basics/Monitors/
-hl.monitor({
-  output = "desc:Dell",
-  mode = "highres",
-  position = "auto",
-  scale = 1.00
-})
+local moninfo = require("moninfo")
+hl.monitor(moninfo.dell)
+hl.monitor(moninfo.laptop)
 
-hl.monitor({
-  output = "desc:BOE",
-  mode = "preferred",
-  position = "auto",
-  scale = 1.25
-})
-
-local function disable_boe_if_have_dell(timeout)
+local function disable_laptop_if_have_dell(timeout)
   return function()
     hl.timer(function()
-      local have_dell = false
-      for _, mon in ipairs(hl.get_monitors()) do
-        if mon.description:find("Dell") then
-          have_dell = true
-        end
-      end
-
-      if have_dell then
+      if hl.get_monitor(moninfo.dell.output) then
         hl.monitor({
-          output = "desc:BOE",
+          output = moninfo.laptop.output,
           disabled = true
         })
       end
@@ -36,8 +19,8 @@ local function disable_boe_if_have_dell(timeout)
   end
 end
 
-hl.on("hyprland.start", disable_boe_if_have_dell(500))
--- hl.on("config.reloaded", disable_boe_if_have_dell(500))
+hl.on("hyprland.start", disable_laptop_if_have_dell(500))
+-- hl.on("config.reloaded", disable_laptop_if_have_dell(500))
 
 -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", 16)
