@@ -11,11 +11,11 @@ position = "17% 5%"
 size = "70% 60%"
 offset = "200%"
 
-[scratchpads.htop]
+[scratchpads.btop]
 animation = "fromLeft"
-command = "kitty --class kitty-taskbar -e htop"
+command = "kitty --class kitty-taskbar -e btop"
 class = "kitty-taskbar"
-size = "45% 80%"
+size = "60% 80%"
 offset = "200%"
 
 [scratchpads.clipse]

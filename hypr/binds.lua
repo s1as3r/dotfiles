@@ -56,7 +56,7 @@ hl.bind(main_mod .. " + SHIFT + s", hl.dsp.window.move({ workspace = "special:sc
 
 -- pyprland
 hl.bind(main_mod .. " + CTRL + RETURN", hl.dsp.exec_cmd("pypr toggle term"))
-hl.bind(main_mod .. " + CTRL + h", hl.dsp.exec_cmd("pypr toggle btop"))
+hl.bind(main_mod .. " + CTRL + b", hl.dsp.exec_cmd("pypr toggle btop"))
 hl.bind(main_mod .. " + v", hl.dsp.exec_cmd("pypr toggle clipse"))
 
 -- screenshot
