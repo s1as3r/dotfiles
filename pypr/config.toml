@@ -24,3 +24,10 @@ command = "kitty --class kitty-clipse -e clipse"
 class = "kitty-clipse"
 size = "45% 80%"
 offset = "200%"
+
+[scratchpads.task]
+animation = "fromBottom"
+command = "kitty --class kitty-task -e taskwarrior-tui"
+class = "kitty-task"
+size = "60% 60%"
+offset = "200%"
