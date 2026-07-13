@@ -20,6 +20,7 @@
     ~/.haskeline: haskeline
     ~/.gitconfig: gitconfig
     ~/.ripgreprc: ripgreprc
+    ~/.gdbinit: gdbinit
 
 - if:
     cond: 'bash -c "[[ `uname -o` != Android ]]"'
