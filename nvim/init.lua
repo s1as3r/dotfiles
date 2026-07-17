@@ -10,6 +10,7 @@ require('plugins')
 require('setup.lsp')
 require('setup.treesitter')
 require('setup.telescope')
+require('setup.snippets')
 
 local util = require('util')
 
@@ -56,7 +57,7 @@ vim.o.guifont = 'Iosevka Nerd Font Mono:h14'
 vim.o.winborder = 'rounded'
 
 -- textwidth
-vim.o.textwidth = 80
+vim.o.textwidth = 90
 vim.o.colorcolumn = "-1"
 
 -- whitespace characters
@@ -108,6 +109,8 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<C-q>', '<cmd>bdelete<cr>', { desc = 'Delete Buffer' })
+
+vim.keymap.set('v', '<C-c>', '"+y', { desc = 'copy to os clipboard' });
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
