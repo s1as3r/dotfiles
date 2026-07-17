@@ -47,6 +47,7 @@ vim.pack.add({
   gh('junegunn/fzf.vim'),
   gh('habamax/vim-godot'),
   gh('folke/lazydev.nvim'),
+  gh('chomosuke/typst-preview.nvim')
 })
 
 require('bufferline').setup()
@@ -55,6 +56,7 @@ require('which-key').setup()
 require('nvim-autopairs').setup()
 require('better_escape').setup()
 require('Comment').setup()
+require('typst-preview').setup()
 
 require('lazydev').setup({
   library = {
