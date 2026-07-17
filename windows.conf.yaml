@@ -21,3 +21,4 @@
     ~/.haskeline: haskeline
     ~/.ghci: ghci
     ~/.gitconfig: gitconfig
+    ~/.gitconfig_windows: gitconfig_windows

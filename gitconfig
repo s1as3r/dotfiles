@@ -37,4 +37,6 @@
 	process = git-lfs filter-process
 	required = true
 
+[includeIf "gitdir:C:/"]
+	path = .gitconfig_windows
 # vim: set ft=gitconfig :
