@@ -5,22 +5,26 @@ local moninfo = require("moninfo")
 hl.monitor(moninfo.dell)
 hl.monitor(moninfo.laptop)
 
-local function disable_laptop_if_have_dell(timeout)
+--- @param timeout integer
+--- @param fn function
+local function after(timeout, fn)
   return function()
-    hl.timer(function()
-      if hl.get_monitor(moninfo.dell.output) then
-        hl.monitor({
-          output = moninfo.laptop.output,
-          disabled = true
-        })
-      end
-      -- hl.notification.create({ text = "disbled boe", timeout = 3000, color = "#00FFFF" })
-    end, { timeout = timeout, type = "oneshot" })
+    hl.timer(fn, { timeout = timeout, type = "oneshot" })
   end
 end
 
-hl.on("hyprland.start", disable_laptop_if_have_dell(500))
--- hl.on("config.reloaded", disable_laptop_if_have_dell(500))
+local function disable_laptop_if_have_dell()
+  if hl.get_monitor(moninfo.dell.output) then
+    hl.monitor({
+      output = moninfo.laptop.output,
+      disabled = true
+    })
+  end
+end
+
+hl.on("hyprland.start", after(500, disable_laptop_if_have_dell))
+-- hl.on("monitor.added", after(500, disable_laptop_if_have_dell))
+-- hl.on("config.reloaded", after(500, disable_laptop_if_have_dell))
 
 -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", 16)

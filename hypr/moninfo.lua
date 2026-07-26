@@ -1,3 +1,4 @@
+--- @type { dell: HL.MonitorSpec, laptop: HL.MonitorSpec }
 return {
   dell = {
     output = "desc:Dell",
