@@ -46,12 +46,12 @@ else
 end
 
 if command -v hyprctl > /dev/null
-    abbr -a monon  'hyprctl eval \'hl.monitor({
+    alias  monon  'hyprctl eval \'hl.monitor({
         output = "desc:BOE",
         mode = "preferred",
         position = "auto",
         scale = 1.25,
         disabled = false
     })\''
-    abbr -a monoff 'hyprctl eval \'hl.monitor({ output = "desc:BOE", disabled = true })\''
+    alias monoff 'hyprctl eval \'hl.monitor({ output = "desc:BOE", disabled = true })\''
 end
