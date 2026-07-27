@@ -26,6 +26,17 @@ hl.on("hyprland.start", after(500, disable_laptop_if_have_dell))
 -- hl.on("monitor.added", after(500, disable_laptop_if_have_dell))
 -- hl.on("config.reloaded", after(500, disable_laptop_if_have_dell))
 
+hl.on("monitor.removed", after(500,
+  function()
+    local mons = hl.get_monitors()
+    local no_mon_active = #mons == 1 and mons[1].name == "FALLBACK"
+
+    if no_mon_active then
+      hl.monitor({ output = moninfo.laptop.output, disabled = false })
+    end
+  end)
+)
+
 -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", 16)
 hl.env("HYPRCURSOR_SIZE", 24)
