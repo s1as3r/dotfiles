@@ -35,7 +35,7 @@ if test "$TERM" = "xterm-kitty"
     function ls --wraps ls; command ls --hyperlink $argv; end
 
     if command -v eza > /dev/null
-        function eza --wraps eza; command eza --hyperlink $argv; end
+        function eza --wraps eza; command eza --hyperlink auto $argv; end
     end
 end
 
