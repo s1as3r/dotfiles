@@ -47,7 +47,8 @@ vim.pack.add({
   gh('junegunn/fzf.vim'),
   gh('habamax/vim-godot'),
   gh('folke/lazydev.nvim'),
-  gh('chomosuke/typst-preview.nvim')
+  gh('chomosuke/typst-preview.nvim'),
+  gh('pixelsandpointers/slang.nvim')
 })
 
 require('bufferline').setup()
@@ -62,6 +63,11 @@ require('lazydev').setup({
   library = {
     { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
   },
+})
+
+require('slang').setup({
+  auto_format = true,
+  inlay_hint = true,
 })
 
 -- load modular plugin files
