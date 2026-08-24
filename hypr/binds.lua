@@ -7,6 +7,16 @@ local file_manager = "nautilus"
 local menu = { name = "wofi", cmd = "wofi -n" }
 local browser = "firefox"
 
+--- @type fun(layout: string, keys: string, action: HL.Dispatcher|function)
+local function layout_bind(layout, keys, action)
+  hl.bind(keys, function()
+    local active_layout = hl.get_config("general.layout")
+    if active_layout == layout then
+      hl.dispatch(action)
+    end
+  end)
+end
+
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(main_mod .. " + e", hl.dsp.exec_cmd(file_manager))
 hl.bind(main_mod .. " + b", hl.dsp.exec_cmd(browser))
@@ -18,8 +28,27 @@ hl.bind(main_mod .. " + q", hl.dsp.window.close())
 hl.bind(main_mod .. " + SHIFT + q", hl.dsp.exit())
 hl.bind(main_mod .. " + t", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(main_mod .. " + p", hl.dsp.window.pseudo())
-hl.bind(main_mod .. " + SHIFT + p", hl.dsp.layout("togglesplit")) -- dwindle
 hl.bind(main_mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+
+hl.bind(main_mod .. " + comma", function()
+  local active_layout = hl.get_config("general.layout")
+
+  local new_layout = "dwindle"
+  if active_layout == "dwindle" then
+    new_layout = "scrolling"
+  end
+
+  hl.config({ general = { layout = new_layout } })
+  hl.notification.create({ text = "layout: " .. new_layout, timeout = 2000 })
+end)
+
+layout_bind("dwindle", main_mod .. " + period", hl.dsp.layout("togglesplit"))
+
+layout_bind("scrolling", main_mod .. " + SHIFT + left", hl.dsp.layout("swapcol l"))
+layout_bind("scrolling", main_mod .. " + SHIFT + right", hl.dsp.layout("swapcol r"))
+layout_bind("scrolling", main_mod .. " + SHIFT + h", hl.dsp.layout("swapcol l"))
+layout_bind("scrolling", main_mod .. " + SHIFT + l", hl.dsp.layout("swapcol r"))
+
 
 -- window focus
 hl.bind(main_mod .. " + left", hl.dsp.focus({ direction = "left" }))

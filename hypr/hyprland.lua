@@ -24,7 +24,7 @@ end
 
 hl.on("hyprland.start", after(500, disable_laptop_if_have_dell))
 -- hl.on("monitor.added", after(500, disable_laptop_if_have_dell))
--- hl.on("config.reloaded", after(500, disable_laptop_if_have_dell))
+hl.on("config.reloaded", after(500, disable_laptop_if_have_dell))
 
 hl.on("monitor.removed", after(500,
   function()
@@ -145,6 +145,13 @@ hl.config({
   master  = {
     new_status = "master"
   },
+})
+
+hl.config({
+  -- https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/
+  scrolling = {
+    direction = "right"
+  }
 })
 
 hl.config({
