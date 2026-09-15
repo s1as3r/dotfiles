@@ -48,6 +48,8 @@ layout_bind("scrolling", main_mod .. " + SHIFT + left", hl.dsp.layout("swapcol l
 layout_bind("scrolling", main_mod .. " + SHIFT + right", hl.dsp.layout("swapcol r"))
 layout_bind("scrolling", main_mod .. " + SHIFT + h", hl.dsp.layout("swapcol l"))
 layout_bind("scrolling", main_mod .. " + SHIFT + l", hl.dsp.layout("swapcol r"))
+layout_bind("scrolling", main_mod .. " + period", hl.dsp.layout("fit active"))
+layout_bind("scrolling", main_mod .. " + slash", hl.dsp.layout("inhibit_scroll"))
 
 
 -- window focus
